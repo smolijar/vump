@@ -2,9 +2,15 @@ require File.expand_path('vump/version', __dir__)
 require File.expand_path('vump/meta', __dir__)
 require File.expand_path('vump', __dir__)
 require 'optparse'
+require 'logger'
 
 # Root module for package Vump
 module Vump
+  @@logger = Logger.new(STDOUT)
+  def self.logger
+    @@logger
+  end
+
   # CLI module for package Vump
   module CLI
     # Parse CLI arguemnts
@@ -25,7 +31,7 @@ module Vump
     #
     # @param [Array[String]] args CLI args
     # @return true if all valid
-    def self.valid_args(args)
+    def self.valid_args(_args)
       true
     end
 
@@ -33,8 +39,16 @@ module Vump
     #
     # @param [Array[String]] args CLI args
     # @return [String] output
-    def self.log(args)
-      'Logs...'
+    def self.bump(_args)
+      v_modules = Vump::VersionModule
+                  .constants
+                  .map { |m| Vump::VersionModule.const_get(m) }
+                  .select { |m| (m.is_a? Module) && m.read }
+      versions = v_modules.map(&:read).uniq
+      # if versions.length = 0, nothing to do
+      # if versions.length > 1, inconsistent
+      new_version = 'updated version'
+      v_modules.each { |m| m.write(new_version) }
     end
 
     # Main CLI command
@@ -43,7 +57,7 @@ module Vump
       if options[:version]
         puts "vump #{Vump::VERSION}"
       elsif valid_args(args)
-        puts log(args)
+        bump(args)
       else
         puts 'Error: invalid version part to bump.' unless args.empty?
         puts Vump::SUMMARY if options[:help]
