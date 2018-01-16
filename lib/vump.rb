@@ -3,6 +3,7 @@ Dir[File.expand_path('vump/semver/module/*.rb', __dir__)]
   .each { |file| require file }
 require 'logger'
 
+# Root package module
 module Vump
   @@logger = Logger.new(STDOUT)
   def self.logger
@@ -46,6 +47,8 @@ module Vump
       v_modules.each { |m| m.write(new_version.to_s) }
     end
   end
+
+  # Module containing all worker modules to be executed on bump
   module VersionModule
   end
 end

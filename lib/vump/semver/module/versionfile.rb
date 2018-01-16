@@ -1,5 +1,6 @@
 module Vump
   module VersionModule
+    # Module for VERSION file
     module VersionFile
       def self.read
         path = self.path

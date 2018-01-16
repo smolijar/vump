@@ -1,4 +1,5 @@
 module Vump
+  # Representation of version notation according to https://semver.org/
   class Semver
     def initialize(string)
       # <numeral>[-<sufix>]
