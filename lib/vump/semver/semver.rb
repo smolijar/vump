@@ -14,21 +14,27 @@ module Vump
                                .map(&:to_i)
     end
 
+    def reset(what)
+      levels = %i[@build @pre @patch @minor @major]
+      # tag to false, version to 0
+      reset_to = %i[@build @pre].include?(what) ? false : 0
+      instance_variable_set(what, reset_to)
+      # reset lesser sections
+      reset levels[levels.index(what) - 1] if levels.index(what) != 0
+    end
+
     def bump_patch
-      @pre = @build = false
+      reset :@pre
       @patch += 1
     end
 
     def bump_minor
-      @pre = @build = false
-      @patch = 0
+      reset :@patch
       @minor += 1
     end
 
     def bump_major
-      @pre = @build = false
-      @patch = 0
-      @minor = 0
+      reset :@minor
       @major += 1
     end
 
