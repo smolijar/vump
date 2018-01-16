@@ -18,7 +18,7 @@ module Vump
       end
 
       def compose(new_version)
-        json = JSON.parse(File.read(path))
+        json = JSON.parse(@read_contents)
         json['version'] = new_version
         JSON.pretty_generate(json) + "\n"
       end

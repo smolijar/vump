@@ -4,11 +4,12 @@ module Vump
     def initialize(base)
       @base = base
     end
-    
+
     def read
       name = self.class.name
       if File.file?(path)
-        ver = scrape(File.read(path))
+        @read_contents = File.read(path)
+        ver = scrape(@read_contents)
         Vump.logger.debug("#{name} read `#{ver}` from `#{path}`")
       else
         Vump.logger.debug("#{name} could not find `#{path}`")
