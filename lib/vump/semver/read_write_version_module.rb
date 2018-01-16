@@ -21,6 +21,7 @@ module Vump
       name = self.class.name
       File.write(path, compose(new_version))
       Vump.logger.debug("#{name} bumped to `#{new_version}` in `#{path}`")
+      Vump.logger.info("#{name} successfully bumped!")
     end
 
     def self.name

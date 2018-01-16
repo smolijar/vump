@@ -6,6 +6,10 @@ require 'logger'
 # Root package module
 module Vump
   @@logger = Logger.new(STDOUT)
+  @@logger.formatter = proc do |severity, _datetime, _progname, msg|
+    "#{severity}: #{msg}\n"
+  end
+
   def self.logger
     @@logger
   end

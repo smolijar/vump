@@ -1,9 +1,11 @@
 require 'fileutils'
+require 'logger'
 require_relative '../lib/vump'
 
+Vump.logger.level = Logger::WARN
 
 describe 'Mode results' do
-  before do
+  before(:all) do
     # Copy files
     src = Dir[File.expand_path('files/test/*', __dir__)]
     dest = File.expand_path('tmp', __dir__)
@@ -18,10 +20,10 @@ describe 'Mode results' do
       semver.bump_patch
       mod.write(semver.to_s)
     end
+  end
 
-    def relative_read(path)
-      File.read(File.expand_path(path, __dir__))
-    end
+  def relative_read(path)
+    File.read(File.expand_path(path, __dir__))
   end
 
   context 'VERSION' do
