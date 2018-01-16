@@ -35,7 +35,7 @@ module Vump
                        .map { |m| [m, m.read] }
                        .select { |_m, v| v }
     # "unzip"
-    modules_versions.transpose
+    modules_versions.empty? ? [[], []] : modules_versions.transpose
   end
 
   # Format CLI output

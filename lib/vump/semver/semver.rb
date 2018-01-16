@@ -1,7 +1,13 @@
 module Vump
   # Representation of version notation according to https://semver.org/
   class Semver
-    def initialize(string)
+    def initialize(string = nil)
+      @pre = @build = false
+      @major = @minor = @patch = 0
+      load string if string
+    end
+
+    def load(string)
       # <numeral>[-<sufix>]
       version, sufix = string
                        .match(/([\d\.]+)(?:\-)?(.*)?/)
