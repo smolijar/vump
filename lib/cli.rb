@@ -26,15 +26,15 @@ module Vump
     # @param [Array[String]] args CLI args
     # @return true if all valid
     def self.valid_args(args)
-      true
-    end
-
-    # Format CLI output
-    #
-    # @param [Array[String]] args CLI args
-    # @return [String] output
-    def self.log(args)
-      'Logs...'
+      if args.length != 1
+        Vump.logger.error "Wrong number of args. Got #{args.length}, expected 1"
+        false
+      elsif !/^(ma|mi|p)/i.match(args.first)
+        Vump.logger.error 'Unknown version to bump. <major|minor|patch>'
+        false
+      else
+        true
+      end
     end
 
     # Main CLI command
@@ -43,7 +43,7 @@ module Vump
       if options[:version]
         puts "vump #{Vump::VERSION}"
       elsif valid_args(args)
-        puts log(args)
+        Vump.orchestrate(args)
       else
         puts 'Error: invalid version part to bump.' unless args.empty?
         puts Vump::SUMMARY if options[:help]
