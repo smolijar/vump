@@ -26,7 +26,7 @@ module Vump
     modules_versions = Vump::VersionModule
                        .constants
                        .map { |m| Vump::VersionModule.const_get(m) }
-                       .select { |m| m.is_a? Module }
+                       .select { |m| m.is_a? Class }
                        .map { |m| [m, m.read] }
                        .select { |_m, v| v }
     current_versions = modules_versions.map { |_m, v| v }
