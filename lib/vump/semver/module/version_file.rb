@@ -8,8 +8,8 @@ module Vump
         'VERSION'
       end
 
-      def self.path
-        Dir.pwd + '/VERSION'
+      def path
+        @base + '/VERSION'
       end
 
       def scrape(str)

@@ -9,8 +9,8 @@ module Vump
         'package.json'
       end
 
-      def self.path
-        Dir.pwd + '/package.json'
+      def path
+        @base + '/package.json'
       end
 
       def scrape(str)
@@ -18,7 +18,7 @@ module Vump
       end
 
       def compose(new_version)
-        json = JSON.parse(File.read(self.class.path))
+        json = JSON.parse(File.read(path))
         json['version'] = new_version
         JSON.pretty_generate(json) + "\n"
       end

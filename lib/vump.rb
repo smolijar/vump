@@ -22,12 +22,12 @@ module Vump
     version
   end
 
-  def self.modules
+  def self.modules(base = Dir.pwd)
     modules_versions = Vump::VersionModule
                        .constants
                        .map { |m| Vump::VersionModule.const_get(m) }
                        .select { |m| m.is_a? Class }
-                       .map(&:new)
+                       .map { |m| m.new(base) }
                        .map { |m| [m, m.read] }
                        .select { |_m, v| v }
     # "unzip"

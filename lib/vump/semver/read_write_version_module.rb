@@ -1,8 +1,11 @@
 module Vump
   # Read write version module archetype
   class ReadWriteVersionModule
+    def initialize(base)
+      @base = base
+    end
+    
     def read
-      path = self.class.path
       name = self.class.name
       if File.file?(path)
         ver = scrape(File.read(path))
@@ -13,11 +16,17 @@ module Vump
       ver
     end
 
+    def write(new_version)
+      name = self.class.name
+      File.write(path, compose(new_version))
+      Vump.logger.debug("#{name} bumped to `#{new_version}` in `#{path}`")
+    end
+
     def self.name
       raise NotImplementedError
     end
 
-    def self.path
+    def path
       raise NotImplementedError
     end
 
@@ -27,13 +36,6 @@ module Vump
 
     def compose(_new_version)
       raise NotImplementedError
-    end
-
-    def write(new_version)
-      name = self.class.name
-      path = self.class.path
-      File.write(path, compose(new_version))
-      Vump.logger.debug("#{name} bumped to `#{new_version}` in `#{path}`")
     end
   end
 end
