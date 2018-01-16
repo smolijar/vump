@@ -1,0 +1,12 @@
+{
+  "name": "foo",
+  "version": "2.5.75",
+  "description": "bar",
+  "author": "John Doe",
+  "dependencies": {
+    "webpack": "^3.8.1"
+  },
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
+}
