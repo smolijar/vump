@@ -31,15 +31,15 @@ module Vump
     #
     # @param [Array[String]] args CLI args
     # @return true if all valid
-    def self.valid_args(_args)
-      true
+    def self.valid_args(args)
+      args.length == 1 && /^(ma|mi|p)/i.match(args.first)
     end
 
     # Format CLI output
     #
     # @param [Array[String]] args CLI args
     # @return [String] output
-    def self.bump(_args)
+    def self.bump(args)
       v_modules = Vump::VersionModule
                   .constants
                   .map { |m| Vump::VersionModule.const_get(m) }
@@ -47,8 +47,18 @@ module Vump
       versions = v_modules.map(&:read).uniq
       # if versions.length = 0, nothing to do
       # if versions.length > 1, inconsistent
-      new_version = 'updated version'
-      v_modules.each { |m| m.write(new_version) }
+      version = versions.first
+      new_version = Vump::Semver.new(version)
+      p new_version
+      case args.first
+      when /^ma/i
+        new_version.bump_major
+      when /^mi/i
+        new_version.bump_minor
+      when /^p/i
+        new_version.bump_patch
+      end
+      v_modules.each { |m| m.write(new_version.to_s) }
     end
 
     # Main CLI command
