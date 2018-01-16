@@ -27,11 +27,11 @@ module Vump
                        .constants
                        .map { |m| Vump::VersionModule.const_get(m) }
                        .select { |m| m.is_a? Class }
+                       .map(&:new)
                        .map { |m| [m, m.read] }
                        .select { |_m, v| v }
-    current_versions = modules_versions.map { |_m, v| v }
-    v_modules = modules_versions.map { |m, _v| m }
-    [v_modules, current_versions]
+    # "unzip"
+    modules_versions.transpose
   end
 
   # Format CLI output

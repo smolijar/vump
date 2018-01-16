@@ -6,21 +6,21 @@ module Vump
     # Npm version module for package.json
     class Npm < ReadWriteVersionModule
       def self.name
-        'Npm'
-      end
-
-      def self.scrape(str)
-        JSON.parse(str)['version']
-      end
-
-      def self.compose(new_version)
-        json = JSON.parse(File.read(path))
-        json['version'] = new_version
-        JSON.pretty_generate(json) + "\n"
+        'package.json'
       end
 
       def self.path
         Dir.pwd + '/package.json'
+      end
+
+      def scrape(str)
+        JSON.parse(str)['version']
+      end
+
+      def compose(new_version)
+        json = JSON.parse(File.read(self.class.path))
+        json['version'] = new_version
+        JSON.pretty_generate(json) + "\n"
       end
     end
   end

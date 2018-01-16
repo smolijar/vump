@@ -8,16 +8,16 @@ module Vump
         'VERSION'
       end
 
-      def self.scrape(str)
+      def self.path
+        Dir.pwd + '/VERSION'
+      end
+
+      def scrape(str)
         str.strip
       end
 
-      def self.compose(new_version)
+      def compose(new_version)
         new_version + "\n"
-      end
-
-      def self.path
-        Dir.pwd + '/VERSION'
       end
     end
   end
