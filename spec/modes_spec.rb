@@ -26,15 +26,15 @@ describe 'Mode results' do
     File.read(File.expand_path(path, __dir__))
   end
 
-  context 'VERSION' do
-    subject(:ref) { relative_read 'files/reference/VERSION' }
-    subject { relative_read 'tmp/VERSION' }
-    it { is_expected.to eql ref }
-  end
-
-  context 'package.json' do
-    subject(:ref) { relative_read 'files/reference/package.json' }
-    subject { relative_read 'tmp/package.json' }
-    it { is_expected.to eql ref }
+  [
+    'VERSION',
+    'package.json',
+    'package-lock.json'
+  ].each do |filename|
+    context filename do
+      subject(:ref) { relative_read "files/reference/#{filename}" }
+      subject { relative_read "tmp/#{filename}" }
+      it { is_expected.to eql ref }
+    end
   end
 end
