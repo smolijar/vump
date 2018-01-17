@@ -1,9 +1,9 @@
 require_relative '../lib/vump/semver/semver'
 
 describe 'Semver construction' do
-  context 'Simple digits' do
-    subject { Vump::Semver.new('1.2.3').to_s }
-    it { is_expected.to eql '1.2.3' }
+  context 'Empty' do
+    subject { Vump::Semver.new.to_s }
+    it { is_expected.to eql '0.0.0' }
   end
   context 'Mutliple digits' do
     subject { Vump::Semver.new('153.0.7777').to_s }

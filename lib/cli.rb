@@ -16,7 +16,9 @@ module Vump
       options = {}
       args = OptionParser.new do |opt|
         opt.on('-h', '--help') { options[:help] = true }
-        opt.on('-v', '--version') { options[:version] = true }
+        opt.on('--version') { options[:version] = true }
+        opt.on('-v', '--verbose') { options[:verbose] = true }
+        opt.on('-s', '--silent') { options[:silent] = true }
       end.parse!
       [options, args]
     end
@@ -34,6 +36,15 @@ module Vump
         false
       else
         true
+      end
+    end
+
+    def self.setup(options)
+      Vump.logger.level = Logger::INFO
+      if options[:verbose]
+        Vump.logger.level = Logger::DEBUG
+      elsif options[:silent]
+        Vump.logger.level = Logger::UNKNOWN
       end
     end
 

@@ -6,6 +6,10 @@ require 'logger'
 # Root package module
 module Vump
   @@logger = Logger.new(STDOUT)
+  @@logger.formatter = proc do |severity, _datetime, _progname, msg|
+    "#{severity}: #{msg}\n"
+  end
+
   def self.logger
     @@logger
   end
@@ -22,16 +26,16 @@ module Vump
     version
   end
 
-  def self.modules
+  def self.modules(base = Dir.pwd)
     modules_versions = Vump::VersionModule
                        .constants
                        .map { |m| Vump::VersionModule.const_get(m) }
-                       .select { |m| m.is_a? Module }
+                       .select { |m| m.is_a? Class }
+                       .map { |m| m.new(base) }
                        .map { |m| [m, m.read] }
                        .select { |_m, v| v }
-    current_versions = modules_versions.map { |_m, v| v }
-    v_modules = modules_versions.map { |m, _v| m }
-    [v_modules, current_versions]
+    # "unzip"
+    modules_versions.empty? ? [[], []] : modules_versions.transpose
   end
 
   # Format CLI output
