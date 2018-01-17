@@ -2,6 +2,7 @@ require 'json'
 require 'date'
 require 'keepachangelog'
 require_relative '../read_write_version_module'
+require_relative '../monkey/keepachangelog'
 
 module Vump
   module VersionModule
