@@ -3,3 +3,4 @@ roman-*.gem
 doc
 spec/tmp/*
 !spec/tmp/.keep
+Gemfile.lock
