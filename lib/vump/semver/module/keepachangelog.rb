@@ -16,20 +16,31 @@ module Vump
       end
 
       def scrape(str)
-        Keepachangelog::MarkdownParser.parse(str)['versions'].keys.select{|v| v != 'Unreleased'}.first
+        Keepachangelog::MarkdownParser
+          .parse(str)['versions']
+          .keys
+          .reject { |v| v == 'Unreleased' }
+          .first
       end
 
       def compose(new_version)
         content = Keepachangelog::MarkdownParser.parse(@read_contents)
-        # inherit all from unreleased
-        content['versions'][new_version] = content['versions']['Unreleased'].clone
-        # update date
-        content['versions'][new_version]['date'] = Date.today.to_s
-        # reset unreleased
-        content['versions']['Unreleased']['changes'] = {}
+        content = release_changelog(content, new_version)
         parser = Keepachangelog::Parser.new
         parser.parsed_content = content
         parser.to_md + "\n"
+      end
+
+      def release_changelog(changelog, new_version)
+        versions = changelog['versions']
+        # inherit all from unreleased
+        versions[new_version] = versions['Unreleased']
+                                .clone
+        # update date
+        versions[new_version]['date'] = Date.today.to_s
+        # reset unreleased
+        versions['Unreleased']['changes'] = {}
+        changelog
       end
     end
   end

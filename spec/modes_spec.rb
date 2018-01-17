@@ -5,11 +5,15 @@ require 'date'
 
 Vump.logger.level = Logger::WARN
 
-# This is dirty and I don't like it
+# Fix date today for the tests
 class Date
   def self.today
-    '2018-01-17'
+    new(2018, 1, 17)
   end
+end
+
+def relative_read(path)
+  File.read(File.expand_path(path, __dir__))
 end
 
 describe 'Mode results' do
@@ -28,10 +32,6 @@ describe 'Mode results' do
       semver.bump_patch
       mod.write(semver.to_s)
     end
-  end
-
-  def relative_read(path)
-    File.read(File.expand_path(path, __dir__))
   end
 
   [
