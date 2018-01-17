@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
 
-# Include root Gemfile.
-eval_gemfile File.join(File.dirname(__FILE__), '../../Gemfile')
+group :test, :development do
+  gem 'rspec', '~> 3.6'
+  gem 'rubocop', '~> 0.50.0'
+end
