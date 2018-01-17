@@ -49,7 +49,15 @@ module Vump
     else
       new_version = bump(args.first, Vump::Semver.new(current_versions.first))
       v_modules.each { |m| m.write(new_version.to_s) }
+      git(v_modules, new_version)
     end
+  end
+
+  def self.git(modules, release_version)
+    return unless File.exist?(Dir.pwd + '/.git')
+    modules.each { |m| `git add #{m.path}` }
+    `git commit -m "Release #{release_version}"` unless modules.empty?
+    `git tag "v#{release_version}"`
   end
 
   # Module containing all worker modules to be executed on bump
