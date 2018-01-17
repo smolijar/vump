@@ -1,8 +1,16 @@
 require 'fileutils'
 require 'logger'
 require_relative '../lib/vump'
+require 'date'
 
 Vump.logger.level = Logger::WARN
+
+# This is dirty and I don't like it
+class Date
+  def self.today
+    '2018-01-17'
+  end
+end
 
 describe 'Mode results' do
   before(:all) do
@@ -28,6 +36,7 @@ describe 'Mode results' do
 
   [
     'VERSION',
+    'CHANGELOG.md',
     'package.json',
     'package-lock.json'
   ].each do |filename|
