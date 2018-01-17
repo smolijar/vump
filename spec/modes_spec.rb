@@ -1,8 +1,20 @@
 require 'fileutils'
 require 'logger'
 require_relative '../lib/vump'
+require 'date'
 
 Vump.logger.level = Logger::WARN
+
+# Fix date today for the tests
+class Date
+  def self.today
+    new(2018, 1, 17)
+  end
+end
+
+def relative_read(path)
+  File.read(File.expand_path(path, __dir__))
+end
 
 describe 'Mode results' do
   before(:all) do
@@ -22,12 +34,9 @@ describe 'Mode results' do
     end
   end
 
-  def relative_read(path)
-    File.read(File.expand_path(path, __dir__))
-  end
-
   [
     'VERSION',
+    'CHANGELOG.md',
     'package.json',
     'package-lock.json'
   ].each do |filename|

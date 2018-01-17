@@ -20,6 +20,8 @@ DESCRIPTION
 
   s.required_ruby_version = '>= 2.2'
 
+  s.add_runtime_dependency 'keepachangelog'
+
   s.add_development_dependency 'rake', '~> 12.0'
   s.add_development_dependency 'rspec', '~> 3.6'
   s.add_development_dependency 'yard', '~> 0.9'
