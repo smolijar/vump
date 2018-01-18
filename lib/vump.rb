@@ -1,5 +1,5 @@
 require File.expand_path('vump/semver/semver', __dir__)
-Dir[File.expand_path('vump/semver/module/*.rb', __dir__)]
+Dir[File.expand_path('vump/semver/version_modules/file_modules/*.rb', __dir__)]
   .each { |file| require file }
 require 'logger'
 
