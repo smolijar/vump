@@ -2,7 +2,7 @@ require File.expand_path('lib/vump/version', __dir__)
 require File.expand_path('lib/vump/meta', __dir__)
 
 Gem::Specification.new do |s|
-  s.name        = 'vump: Semantic version bumper'
+  s.name        = 'vump'
   s.version     = Vump::VERSION
   s.homepage    = 'https://github.com/grissius/vump'
   s.license     = 'MIT'
@@ -20,7 +20,7 @@ DESCRIPTION
 
   s.required_ruby_version = '>= 2.2'
 
-  s.add_runtime_dependency 'keepachangelog'
+  s.add_runtime_dependency 'keepachangelog', '~> 0.5.3'
 
   s.add_development_dependency 'rake', '~> 12.0'
   s.add_development_dependency 'rspec', '~> 3.6'
