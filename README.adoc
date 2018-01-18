@@ -1,0 +1,41 @@
+= vump: Semantic version bumper
+Jaroslav Šmolík <grissius@gmail.com>
+:semver: https://semver.org/[semver]
+:git: https://git-scm.com/[git]
+
+CLI tool to easily manage projects using {semver} and automate menial version raising.
+
+== Introduction
+
+When working on a project with version management, increasing a version is a mundane, boring task. It might consist of as much as following steps:
+
+* modify `VERSION` file
+* modify package file version
+* update changelog (e.g. if using keepachangelog move unreleased to this version, start new unreleased, update footnote)
+* create a commit
+* tag a commit
+* double check previous steps, because you might have forgotten any of them
+
+Which is exhausting. If following any standards at all, like {semver}, keepachagnelog etc, it does not require any human input, but to decide which version to increase.
+
+== Usage
+In root of project directory, choose which version (from {semver}) to bump, and supply it as a sole argument.
+```
+vump <major|minor|patch>
+```
+
+TIP: You can use any discriminative prefixes such as `maj`, `min`, or even `ma`, `mi` and `p`.
+
+=== What it does
+The program loads all modules, each being responsible for a single file it understands.
+Each module checks if the file exists and if so, it will read the last version.
+The versions across modules must match and are bumped as desired and written back into files.
+
+After all file modules are done, {git} module adds all modified files and creates a tagged commit, if {git} is used in the project.
+
+WARNING: As the interface implies, your project must follow the {semver} specifiaction.
+
+=== Options
+`vump --version`:: Print program version
+`vump --verbose patch`, `vump -v patch`:: Print debug logs
+`vump --silent patch`, `vump -s patch`:: Print only warning and error logs
