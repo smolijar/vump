@@ -2,6 +2,11 @@
 Jaroslav Šmolík <grissius@gmail.com>
 :semver: https://semver.org/[semver]
 :git: https://git-scm.com/[git]
+:rubychangelog: https://rubygems.org/gems/keepachangelog[keepachangelog]
+
+image:https://travis-ci.org/grissius/vump.svg["Build Status", link="https://travis-ci.org/grissius/vump"]
+image:https://img.shields.io/gem/v/vump.svg?style=flat[Gem Version, link="https://rubygems.org/gems/vump"]
+image:https://img.shields.io/badge/yard-docs-blue.svg[Yard Docs, link="http://www.rubydoc.info/github/grissius/vump"]
 
 CLI tool to easily manage projects using {semver} and automate menial version raising.
 
@@ -17,6 +22,15 @@ When working on a project with version management, increasing a version is a mun
 * double check previous steps, because you might have forgotten any of them
 
 Which is exhausting. If following any standards at all, like {semver}, keepachagnelog etc, it does not require any human input, but to decide which version to increase.
+
+== Install
+```
+gem install vump
+```
+=== Requirements
+
+* ruby >= 2.2
+
 
 == Usage
 In root of project directory, choose which version (from {semver}) to bump, and supply it as a sole argument.
@@ -39,3 +53,35 @@ WARNING: As the interface implies, your project must follow the {semver} specifi
 `vump --version`:: Print program version
 `vump --verbose patch`, `vump -v patch`:: Print debug logs
 `vump --silent patch`, `vump -s patch`:: Print only warning and error logs
+
+== Current modules
+
+[WARNING]
+====
+Non-trivial modules do not operate on text, but parsed objects, which might result in ugly diffs after first usage.
+
+If you encounter any fishy :fish: behaviour due to this let me know!
+====
+
+VERSION::
+Find and bump version in `./VERSION` file.
++
+* Expect just verison with whitepsaces around
+* Write version followed by a newline.
+
+Npm::
+Find and bump version in `./package.json` file.
++
+* Parse JSON, modify as object.
+* Serialize back to JSON, append newline.
+NpmLock::
+Find and bump version in `./package-lock.json` file
++
+* Same as Npm.
+Keepachangelog::
+Find and bump version in `./CHANGELOG.md` file.
++
+* Parse changelog by {rubychangelog}.
+* Add changes from `Unreleased` version to new release with current date.
+* Add empty `Unreleased` version.
+* Serialize back into markdown.
