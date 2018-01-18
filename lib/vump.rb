@@ -51,7 +51,7 @@ module Vump
     else
       new_version = bump(args.first, Vump::Semver.new(current_versions.first))
       v_modules.each { |m| m.write(new_version.to_s) }
-      Vump::VersionModules::VcsModules::Git::revise(v_modules, new_version)
+      Vump::VersionModules::VcsModules::Git.revise(v_modules, new_version)
     end
   end
 
