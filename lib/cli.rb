@@ -20,6 +20,7 @@ module Vump
         opt.on('-v', '--verbose') { options[:verbose] = true }
         opt.on('-s', '--silent') { options[:silent] = true }
       end.parse!
+      setup(options)
       [options, args]
     end
 
@@ -52,13 +53,13 @@ module Vump
     def self.start(argv)
       options, args = parse_argv(argv)
       if options[:version]
-        puts "vump #{Vump::VERSION}"
+        Vump.logger.info "vump #{Vump::VERSION}"
+      elsif options[:help]
+        Vump.logger.info Vump::SUMMARY
       elsif valid_args(args)
         Vump.orchestrate(args)
       else
-        puts 'Error: invalid version part to bump.' unless args.empty?
-        puts Vump::SUMMARY if options[:help]
-        puts 'vump <major|minor|patch>'
+        Vump.logger.info 'vump <major|minor|patch>'
       end
     end
   end
