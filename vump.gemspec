@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   Semantic version bumper. CLI tool to easily manage projects using semver and automate menial version raising.
 DESCRIPTION
 
-  s.files       = Dir['bin/*', 'lib/**/*', '*.gemspec', 'LICENSE*', 'README*']
+  s.files       = Dir['bin/*', 'lib/**/*', '*.gemspec', 'LICENSE*', 'README*', 'VERSION']
   s.executables = Dir['bin/*'].map { |f| File.basename(f) }
   s.has_rdoc    = 'yard'
 
