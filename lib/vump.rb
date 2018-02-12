@@ -42,16 +42,18 @@ module Vump
 
   # Format CLI output
   #
-  # @param [Array<String>] args CLI args
-  # @return [String] output
+  # @param [Array[String]] args CLI args
+  # @return [bool] true if successful
   def self.orchestrate(args)
     v_modules, current_versions = modules
     if current_versions.uniq.length > 1
       Vump.logger.error 'Different versions detected. Quitting.'
+      return false
     else
       new_version = bump(args.first, Vump::Semver.new(current_versions.first))
       v_modules.each { |m| m.write(new_version.to_s) }
       Vump::VersionModules::VcsModules::Git.revise(v_modules, new_version)
+      return true
     end
   end
 
