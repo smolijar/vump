@@ -9,9 +9,9 @@ module Vump
   module CLI
     # Parse CLI arguemnts
     #
-    # @param [Array[String]] _ arguments (not used now)
+    # @param [Array<String>] _ arguments (not used now)
     #   OptionParser parses ARGV
-    # @return [Array[String], Array[String]] options and args
+    # @return [Array<String>, Array<String>] options and args
     def self.parse_argv(_)
       options = {}
       args = OptionParser.new do |opt|
@@ -26,7 +26,7 @@ module Vump
 
     # Tets if CLI arguments are valid.
     #
-    # @param [Array[String]] args CLI args
+    # @param [Array<String>] args CLI args
     # @return true if all valid
     def self.valid_args(args)
       if args.length != 1

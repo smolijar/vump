@@ -42,7 +42,7 @@ module Vump
 
   # Format CLI output
   #
-  # @param [Array[String]] args CLI args
+  # @param [Array<String>] args CLI args
   # @return [String] output
   def self.orchestrate(args)
     v_modules, current_versions = modules
