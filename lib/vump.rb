@@ -1,4 +1,4 @@
-require File.expand_path('vump/semver/semver', __dir__)
+require_relative 'vump/semver/semver'
 Dir[File.expand_path('vump/semver/version_modules/file_modules/*.rb', __dir__)]
   .each { |file| require file }
 Dir[File.expand_path('vump/semver/version_modules/vcs_modules/*.rb', __dir__)]
