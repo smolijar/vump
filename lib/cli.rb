@@ -1,6 +1,6 @@
-require File.expand_path('vump/version', __dir__)
-require File.expand_path('vump/meta', __dir__)
-require File.expand_path('vump', __dir__)
+require_relative 'vump/version'
+require_relative 'vump/meta'
+require_relative 'vump'
 require 'optparse'
 
 # Root module for package Vump
