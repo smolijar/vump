@@ -52,14 +52,16 @@ module Vump
     # Main CLI command
     def self.start(argv)
       options, args = parse_argv(argv)
+      result = 0
       if options[:version]
         Vump.logger.info "vump #{Vump::VERSION}"
       elsif options[:help]
         Vump.logger.info Vump::SUMMARY
       elsif valid_args(args)
-        Vump.orchestrate(args)
+        return Vump.orchestrate(args)
       else
         Vump.logger.info 'vump <major|minor|patch>'
+        return 1
       end
     end
   end
