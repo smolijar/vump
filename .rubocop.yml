@@ -1,2 +1,4 @@
-Style/ClassVars:
-  Enabled: false
+AllCops:
+  TargetRubyVersion: 2.2
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
