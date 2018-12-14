@@ -1,6 +1,7 @@
 module Vump
 end
 
+require 'semver'
 require 'vump_logger'
 require 'modules/version_file'
 
@@ -38,18 +39,18 @@ class Vump::Vump
   end
 
   def select_version(versions)
-    if versions.uniq.length <= 1
+    if versions.uniq.length > 1
       @logger.warn("Inconsitent version records: #{versions}")
       return false
     end
-    version.first
+    versions.first
   end
 
   def start
     modules = load_modules
     version = select_version(read_versions(modules))
-
-    new_version = '2.0.5'
-    Vump::VersionFile.write(@base_path, new_version)
+    semver = Vump::Semver.new(version)
+    semver.bump_minor
+    Vump::VersionFile.write(@base_path, semver.to_s)
   end
 end
