@@ -45,6 +45,17 @@ class Vump::Semver
     @major += 1
   end
 
+  def bump(what)
+    case what
+    when :patch
+      bump_patch
+    when :minor
+      bump_minor
+    when :major
+      bump_major
+    end
+  end
+
   def to_s
     str = "#{@major}.#{@minor}.#{@patch}"
     str << "-#{@pre}" if @pre

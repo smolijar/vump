@@ -53,7 +53,7 @@ class Vump::Vump
     modules = load_modules
     version = select_version(read_versions(modules))
     semver = Vump::Semver.new(version)
-    semver.bump_minor
+    semver.bump(@arg)
     write_versions(modules, semver.to_s)
   end
 end

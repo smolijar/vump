@@ -14,11 +14,18 @@ module Vump::CLI
         args << input
       end
     end
-    [args, options]
+    [parse_args(args), parse_options(options)]
   end
 
   def self.parse_args(args)
-    args
+    case args.first
+    when /^ma.*/
+      :major
+    when /^mi.*/
+      :minor
+    else
+      :patch
+    end
   end
 
   def self.parse_options(options)
@@ -26,8 +33,8 @@ module Vump::CLI
   end
 
   def self.start(inputs)
-    args, opts = parse_inputs(inputs)
-    vump = Vump::Vump.new(Dir.pwd, args, opts)
+    arg, opts = parse_inputs(inputs)
+    vump = Vump::Vump.new(Dir.pwd, arg, opts)
     vump.start
   end
 end
