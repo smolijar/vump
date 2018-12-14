@@ -43,7 +43,15 @@ class Vump::Vump
       @logger.warn("Inconsitent version records: #{versions}")
       return false
     end
+    @logger.info("Single version extracted from all modules: #{versions.first}")
     versions.first
+  end
+
+  def write_versions(modules, version)
+    modules.map do |mod|
+      mod.write(@base_path, version)
+      @logger.info("Writing new version \"#{version}\"", mod.name)
+    end
   end
 
   def start
@@ -51,6 +59,6 @@ class Vump::Vump
     version = select_version(read_versions(modules))
     semver = Vump::Semver.new(version)
     semver.bump_minor
-    Vump::VersionFile.write(@base_path, semver.to_s)
+    write_versions(modules, semver.to_s)
   end
 end
