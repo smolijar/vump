@@ -1,4 +1,4 @@
-require 'vump'
+require 'root'
 require 'logger'
 
 class Vump::Logger

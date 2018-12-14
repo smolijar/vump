@@ -1,9 +1,4 @@
-module Vump
-end
-
-require 'semver'
-require 'vump_logger'
-require 'modules/version_file'
+require 'root'
 
 class Vump::Vump
   def initialize(base_path, arg, options)

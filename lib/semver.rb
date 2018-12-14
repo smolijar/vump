@@ -1,4 +1,4 @@
-require 'vump'
+require 'root'
 
 class Vump::Semver
   def initialize(string = nil)

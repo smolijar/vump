@@ -1,6 +1,5 @@
-require 'vump'
+require 'root'
 
-# Command line interface for Vump
 module Vump::CLI
   def self.parse_inputs(inputs) # rubocop:disable Metrics/MethodLength
     options = {}
