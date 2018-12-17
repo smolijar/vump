@@ -18,8 +18,8 @@ class Vump::Vump
   def load_modules
     version_modules = [
       Vump::VersionFile
-    ]
-    relevant_modules = version_modules.keep_if { |x| x.relevant?(@base_path) }
+    ].map { |m| m.new(@base_path) }
+    relevant_modules = version_modules.keep_if(&:relevant?)
     @logger.debug("Loaded modules: #{version_modules.map(&:name)}")
     @logger.debug("Relevant modules: #{relevant_modules.map(&:name)}")
     relevant_modules
@@ -27,7 +27,7 @@ class Vump::Vump
 
   def read_versions(modules)
     modules.map do |mod|
-      version = mod.read(@base_path)
+      version = mod.read
       @logger.info("Read current version of \"#{version}\"", mod.name)
       version
     end
@@ -44,8 +44,8 @@ class Vump::Vump
 
   def write_versions(modules, version)
     modules.map do |mod|
-      mod.write(@base_path, version)
-      @logger.info("Writing new version \"#{version}\"", mod.name)
+      mod.write(version)
+      @logger.info("Writing new version \"#{version}\"", mod.class)
     end
   end
 
