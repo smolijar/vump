@@ -44,10 +44,11 @@ vump.logger.logger.level = Logger::UNKNOWN
 
 RSpec.describe vump.class.name, type: :request do
   before :each do
-    allow_any_instance_of(Vump::Vump).to receive(:all_modules).and_return([
+    mods = [
       TestModule,
       IrrelevantTestModule
-    ])
+    ]
+    allow_any_instance_of(Vump::Vump).to receive(:all_modules).and_return(mods)
   end
   it 'load_modules' do
     expect(vump.load_modules.length).to be(1)
