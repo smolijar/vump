@@ -15,10 +15,14 @@ class Vump::Vump
     @logger.debug("Options: #{@options}")
   end
 
-  def load_modules
-    version_modules = [
+  def all_modules
+    [
       Vump::VersionFile
-    ].map { |m| m.new(@base_path) }
+    ]
+  end
+
+  def load_modules
+    version_modules = all_modules.map { |m| m.new(@base_path) }
     relevant_modules = version_modules.keep_if(&:relevant?)
     @logger.debug("Loaded modules: #{version_modules.map(&:name)}")
     @logger.debug("Relevant modules: #{relevant_modules.map(&:name)}")
