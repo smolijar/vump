@@ -1,23 +1,28 @@
 require 'root'
 
 module Vump::CLI
-  def self.parse_inputs(inputs) # rubocop:disable Metrics/MethodLength
+  def self.parse_args(inputs) # rubocop:disable Metrics/MethodLength
     options = {}
     args = []
     inputs.each do |input|
       case input
-      when /--?(.*)/
-        options[Regexp.last_match(1).to_sym] = true
       when /--(?<key>.*?)=(?<value>.*)/
         options[Regexp.last_match(1).to_sym] = Regexp.last_match(2)
+      when /--?(.*)/
+        options[Regexp.last_match(1).to_sym] = true
       else
         args << input
       end
     end
-    [parse_args(args), parse_options(options)]
+    [args, options]
   end
 
-  def self.parse_args(args)
+  def self.parse_inputs(inputs)
+    args, options = parse_args(inputs)
+    [parse_arg(args), parse_options(options)]
+  end
+
+  def self.parse_arg(args)
     case args.first
     when /^ma.*/
       :major
