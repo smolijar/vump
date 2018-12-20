@@ -31,4 +31,5 @@ DESCRIPTION
   s.add_development_dependency 'rspec', '~> 3.6'
   s.add_development_dependency 'yard', '~> 0.9'
   s.add_development_dependency 'rspec-cheki'
+  s.add_development_dependency 'simplecov'
 end
