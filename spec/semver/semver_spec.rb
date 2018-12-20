@@ -51,15 +51,15 @@ RSpec.describe Vump::Semver.name do
   context 'bump with resets' do
     subject(:version) { Vump::Semver.new('2.2.2-pre+build') }
     it 'patch' do
-      version.bump_patch
+      version.bump(:patch)
       expect(version.to_s).to eq('2.2.3')
     end
     it 'minor' do
-      version.bump_minor
+      version.bump(:minor)
       expect(version.to_s).to eq('2.3.0')
     end
     it 'major' do
-      version.bump_major
+      version.bump(:major)
       expect(version.to_s).to eq('3.0.0')
     end
   end
