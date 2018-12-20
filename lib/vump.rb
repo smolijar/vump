@@ -1,6 +1,7 @@
 require 'root'
 
 class Vump::Vump
+  attr_reader :logger
   def initialize(base_path, arg, options)
     @base_path = base_path
     @arg = arg

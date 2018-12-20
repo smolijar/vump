@@ -40,6 +40,7 @@ class Vump::Vump
   end
 end
 vump = Vump::Vump.new('/', :minor, {})
+vump.logger.logger.level = Logger::UNKNOWN
 
 RSpec.describe vump.class.name, type: :request do
   before :each do
