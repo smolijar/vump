@@ -1,7 +1,5 @@
-roman-*.gem
 .yardoc
 doc
-spec/tmp/*
-!spec/tmp/.keep
 Gemfile.lock
 vump*.gem
+coverage

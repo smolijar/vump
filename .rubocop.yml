@@ -4,3 +4,11 @@ Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 Documentation:
   Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+Style/ClassVars:
+  Exclude:
+    - 'spec/**/*.rb'

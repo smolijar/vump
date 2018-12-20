@@ -2,6 +2,7 @@ require 'root'
 require 'logger'
 
 class Vump::Logger
+  attr_reader :logger
   def initialize(_options)
     @logger = Logger.new(STDOUT)
     @logger.formatter = proc do |_severity, _datetime, progname, msg|
