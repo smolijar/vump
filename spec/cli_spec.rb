@@ -38,4 +38,12 @@ RSpec.describe cli.name, type: :request do
       expect([arg, opts]).to match_snapshot
     end
   end
+  context 'start' do
+    before :each do
+      allow_any_instance_of(Vump::Vump).to receive(:start).and_return(:started)
+    end
+    it 'starts' do
+      expect(cli.start([])).to eq(:started)
+    end
+  end
 end
