@@ -1,4 +1,4 @@
-require 'vump'
+require 'root'
 
 class TestModule
   def initialize(base_dir); end

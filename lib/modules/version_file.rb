@@ -1,4 +1,4 @@
-require 'vump'
+require 'root'
 
 class Vump::VersionFile
   def initialize(base_path)
