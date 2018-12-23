@@ -1,18 +1,16 @@
-require File.expand_path('lib/vump/version', __dir__)
-require File.expand_path('lib/vump/meta', __dir__)
+$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+require 'root'
 
 Gem::Specification.new do |s|
-  s.name        = 'vump'
-  s.version     = Vump::VERSION
-  s.homepage    = 'https://github.com/grissius/vump'
-  s.license     = 'MIT'
-  s.author      = 'Jaroslav Šmolík'
-  s.email       = 'grissius@gmail.com'
+  s.name        = Vump.name
+  s.version     = Vump.version
+  s.homepage    = Vump.homepage
+  s.license     = Vump.license
+  s.author      = Vump.author
+  s.email       = Vump.email
 
-  s.summary     = Vump::SUMMARY
-  s.description = <<-DESCRIPTION
-  Semantic version bumper. CLI tool to easily manage projects using semver and automate menial version raising.
-DESCRIPTION
+  s.summary     = Vump.summary
+  s.description = Vump.description
 
   s.files = Dir['bin/*',
                 'lib/**/*',
@@ -21,7 +19,6 @@ DESCRIPTION
                 'README*',
                 'VERSION']
   s.executables = Dir['bin/*'].map { |f| File.basename(f) }
-  s.has_rdoc    = 'yard'
 
   s.required_ruby_version = '>= 2.2'
 
@@ -30,6 +27,7 @@ DESCRIPTION
   s.add_development_dependency 'rake', '~> 12.0'
   s.add_development_dependency 'rspec', '~> 3.6'
   s.add_development_dependency 'yard', '~> 0.9'
-  s.add_development_dependency 'rspec-cheki'
-  s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'rspec-cheki', '~> 0.1'
+  s.add_development_dependency 'simplecov', '~> 0.12'
+  s.add_development_dependency 'coveralls', '~> 0.8'
 end

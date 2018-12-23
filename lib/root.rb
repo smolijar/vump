@@ -3,9 +3,8 @@ end
 
 require 'semver/semver'
 require 'cli/cli'
+require 'cli/meta'
 require 'vump/vump'
 require 'logger/logger'
 
-require 'modules/version/base_module'
-require 'modules/version/base_file_module'
 require 'modules/version/version_file'

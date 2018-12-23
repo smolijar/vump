@@ -1,4 +1,5 @@
 require 'root'
+require 'modules/version/base_module'
 
 class Vump::BaseFileVersionModule < Vump::BaseVersionModule
   def filename

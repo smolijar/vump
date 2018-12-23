@@ -4,6 +4,8 @@ Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 Documentation:
   Enabled: false
+Layout/IndentArray:
+  EnforcedStyle: consistent
 Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
