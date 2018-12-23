@@ -7,4 +7,5 @@ group :test, :development do
   gem 'rspec-cheki'
   gem 'rubocop', '~> 0.50.0'
   gem 'simplecov', require: false
+  gem 'coveralls', require: false
 end
