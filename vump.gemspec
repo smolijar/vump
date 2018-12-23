@@ -2,15 +2,15 @@ $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 require 'root'
 
 Gem::Specification.new do |s|
-  s.name        = Vump.name
-  s.version     = Vump.version
-  s.homepage    = Vump.homepage
-  s.license     = Vump.license
-  s.author      = Vump.author
-  s.email       = Vump.email
+  s.name        = Vump::Meta.name
+  s.version     = Vump::Meta.version
+  s.homepage    = Vump::Meta.homepage
+  s.license     = Vump::Meta.license
+  s.author      = Vump::Meta.author
+  s.email       = Vump::Meta.email
 
-  s.summary     = Vump.summary
-  s.description = Vump.description
+  s.summary     = Vump::Meta.summary
+  s.description = Vump::Meta.description
 
   s.files = Dir['bin/*',
                 'lib/**/*',
