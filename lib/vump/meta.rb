@@ -1,12 +1,12 @@
 require 'root'
 
-module Vump
+module Vump::Meta
   def self.name
     'vump'.freeze
   end
 
   def self.version
-    VersionFile.new(File.expand_path('../../..', __FILE__)).read
+    ::Vump::VersionFile.new(File.expand_path('../..', __dir__)).read
   end
 
   def self.summary
@@ -14,9 +14,10 @@ module Vump
   end
 
   def self.description
-    <<-DESCRIPTION
-  Semantic version bumper. CLI tool to easily manage projects using semver and automate menial version raising.
-  DESCRIPTION
+    text = <<-DESCRIPTION
+      Semantic version bumper. CLI tool to easily manage projects using semver and automate menial version raising.
+    DESCRIPTION
+    text.strip
   end
 
   def self.homepage

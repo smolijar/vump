@@ -6,7 +6,6 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   Coveralls::SimpleCov::Formatter
 ])
 SimpleCov.start do
-  add_filter '/cli/meta'
   add_filter 'spec'
 end
 

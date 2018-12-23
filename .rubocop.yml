@@ -6,6 +6,10 @@ Documentation:
   Enabled: false
 Layout/IndentArray:
   EnforcedStyle: consistent
+Metrics/LineLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
 Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
