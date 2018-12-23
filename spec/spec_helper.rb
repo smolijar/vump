@@ -7,6 +7,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 ])
 SimpleCov.start do
   add_filter '/cli/meta'
+  add_filter 'spec'
 end
 
 require 'rspec/cheki'
