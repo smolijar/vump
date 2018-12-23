@@ -6,7 +6,7 @@ module Vump::Meta
   end
 
   def self.version
-    ::Vump::VersionFile.new(File.expand_path('../../..', __FILE__)).read
+    ::Vump::VersionFile.new(File.expand_path('../..', __dir__)).read
   end
 
   def self.summary
@@ -15,8 +15,8 @@ module Vump::Meta
 
   def self.description
     text = <<-DESCRIPTION
-  Semantic version bumper. CLI tool to easily manage projects using semver and automate menial version raising.
-  DESCRIPTION
+      Semantic version bumper. CLI tool to easily manage projects using semver and automate menial version raising.
+    DESCRIPTION
     text.strip
   end
 

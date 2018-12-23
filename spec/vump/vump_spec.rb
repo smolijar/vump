@@ -15,8 +15,8 @@ class TestModule
     self.class.name
   end
 
-  def write(v)
-    @@last_write = v
+  def write(version)
+    @@last_write = version
     true
   end
 

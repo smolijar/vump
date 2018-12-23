@@ -2,7 +2,7 @@ require 'root'
 
 VERSION = 'foo'.freeze
 NEW_VERSION = 'bar'.freeze
-PATH = File.expand_path('../sandbox', __FILE__)
+PATH = File.expand_path('sandbox', __dir__)
 TARGET = 'sample.txt'.freeze
 CONTENTS = "Current version is #{VERSION}\n".freeze
 TARGET_PATH = File.expand_path(TARGET, PATH).freeze
