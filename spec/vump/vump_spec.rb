@@ -34,7 +34,7 @@ end
 vump = Vump::Vump.new('/', :minor, {})
 vump.logger.logger.level = Logger::UNKNOWN
 
-RSpec.describe vump.class.name, type: :request do
+RSpec.describe vump.class.name do
   context 'real modules' do
     it 'all_modules' do
       expect(vump.all_modules).to be_an_instance_of(Array)

@@ -2,7 +2,7 @@ require 'root'
 
 cli = Vump::CLI
 
-RSpec.describe cli.name, type: :request do
+RSpec.describe cli.name do
   context 'parse_args' do
     it 'parses' do
       args, options = cli.parse_args(%w[-v arg1 --long=value arg2])
