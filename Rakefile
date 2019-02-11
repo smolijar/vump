@@ -5,7 +5,7 @@ end
 
 desc 'Run tests'
 task test: :install do
-  run 'bundle exec rspec spec'
+  run 'bundle exec rspec spec --format=doc'
 end
 
 desc 'Check coding style'
