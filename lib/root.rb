@@ -1,10 +1,10 @@
 module Vump
 end
 
-require 'semver/semver'
-require 'cli/cli'
-require 'vump/meta'
-require 'vump/vump'
-require 'logger/logger'
+require "vump/semver/semver"
+require "vump/cli/cli"
+require "vump/meta"
+require "vump/vump"
+require "vump/logger/logger"
 
-require 'modules/version/version_file'
+require "vump/modules/version/version_file"

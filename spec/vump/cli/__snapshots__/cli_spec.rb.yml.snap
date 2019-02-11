@@ -1,0 +1,18 @@
+---
+"./spec/vump/cli/cli_spec.rb[1:1:1]":
+- - arg1
+  - arg2
+- :v: true
+  :long: value
+"./spec/vump/cli/cli_spec.rb[1:1:2]":
+- - ''
+- {}
+"./spec/vump/cli/cli_spec.rb[1:1:3]":
+- - a
+  - a
+- :v: true
+  :foo: baz
+"./spec/vump/cli/cli_spec.rb[1:3:1]":
+- :minor
+- :s: true
+  :build: alpha
