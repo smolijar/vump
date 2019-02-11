@@ -1,4 +1,4 @@
-require 'root'
+require 'vump/cli/cli'
 
 cli = Vump::CLI
 

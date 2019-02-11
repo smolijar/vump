@@ -1,4 +1,4 @@
-require 'root'
+require 'vump/modules/version/base_module'
 
 path = '/foo'
 version_module = Vump::BaseVersionModule.new(path)

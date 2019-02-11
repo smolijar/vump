@@ -1,4 +1,4 @@
-require 'root'
+require 'vump/semver/semver'
 
 def construct(str)
   Vump::Semver.new(str).to_s
