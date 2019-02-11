@@ -1,4 +1,4 @@
-require 'root'
+require 'vump/vump'
 
 class TestModule
   def initialize(base_dir); end
@@ -24,6 +24,7 @@ class TestModule
     @@last_write
   end
 end
+
 class IrrelevantTestModule
   def initialize(base_dir); end
 
@@ -31,6 +32,7 @@ class IrrelevantTestModule
     false
   end
 end
+
 vump = Vump::Vump.new('/', :minor, {})
 vump.logger.logger.level = Logger::UNKNOWN
 

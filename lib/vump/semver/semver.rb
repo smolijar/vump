@@ -1,5 +1,3 @@
-require 'root'
-
 module Vump
   class Semver
     def initialize(string = nil)

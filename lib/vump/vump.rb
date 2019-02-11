@@ -1,5 +1,3 @@
-require 'root'
-
 module Vump
   class Vump
     attr_reader :logger

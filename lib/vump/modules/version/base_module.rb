@@ -1,5 +1,3 @@
-require 'root'
-
 module Vump
   class BaseVersionModule
     def initialize(base_path)

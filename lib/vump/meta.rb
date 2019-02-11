@@ -1,5 +1,3 @@
-require 'root'
-
 module Vump
   module Meta
     def self.name

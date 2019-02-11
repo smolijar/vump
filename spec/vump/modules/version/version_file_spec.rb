@@ -1,4 +1,4 @@
-require 'root'
+require 'vump/modules/version/version_file'
 
 mod = Vump::VersionFile.new('')
 

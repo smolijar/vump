@@ -1,4 +1,4 @@
-require 'root'
+require 'vump/meta'
 
 RSpec.describe 'Vump meta data' do
   it 'works and is unchanged' do

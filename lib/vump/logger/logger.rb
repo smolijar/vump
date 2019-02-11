@@ -1,4 +1,3 @@
-require 'root'
 require 'logger'
 
 module Vump
