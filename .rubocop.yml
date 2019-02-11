@@ -1,7 +1,5 @@
 AllCops:
   TargetRubyVersion: 2.2
-Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
 Documentation:
   Enabled: false
 Layout/IndentArray:
