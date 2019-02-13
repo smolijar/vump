@@ -23,22 +23,31 @@ module Vump
       @modules[mod.name][:read_version] = version
     end
 
+    # rubocop:disable Metrics/MethodLength
     def report_preamble(base_path, arg, options)
       return if @level > ::Logger::INFO
 
-      header title: 'Vump', width: 80, align: 'center', rule: true, color: 'yellow', bold: true, timestamp: true
+      header(
+        title: 'Vump',
+        width: 80,
+        align: 'center',
+        rule: true,
+        color: 'yellow',
+        bold: true,
+        timestamp: true
+      )
       table(border: false) do
         row do
-          column('Base path', width: 10)
+          column('Base path')
           column(base_path, width: 30)
         end
         row do
-          column('Argument', width: 10)
-          column(arg, width: 30)
+          column('Argument')
+          column(arg)
         end
         row do
-          column('Options', width: 10)
-          column(options, width: 30)
+          column('Options')
+          column(options)
         end
       end
     end
@@ -63,5 +72,7 @@ module Vump
         end
       end
     end
+
+    # rubocop:enable Metrics/MethodLength
   end
 end
