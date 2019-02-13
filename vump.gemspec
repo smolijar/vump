@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.2'
 
+  s.add_runtime_dependency 'command_line_reporter', '>=3.0'
   s.add_runtime_dependency 'keepachangelog', '~> 0.5.3'
 
   s.add_development_dependency 'coveralls', '~> 0.8'
