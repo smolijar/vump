@@ -33,7 +33,7 @@ class IrrelevantTestModule
   end
 end
 
-vump = Vump::Vump.new('/', :minor, {})
+vump = Vump::Vump.new('/', :minor, silent: true)
 vump.logger.logger.level = Logger::UNKNOWN
 
 RSpec.describe vump.class.name do
