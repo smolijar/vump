@@ -4,6 +4,8 @@ Documentation:
   Enabled: false
 Layout/IndentArray:
   EnforcedStyle: consistent
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
 Metrics/LineLength:
   Exclude:
     - 'spec/**/*.rb'
