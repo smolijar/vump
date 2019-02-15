@@ -46,7 +46,7 @@ RSpec.describe vump.class.name do
     before :each do
       mods = [
         TestModule,
-        IrrelevantTestModule
+        IrrelevantTestModule,
       ]
       allow_any_instance_of(Vump::Vump).to(
         receive(:all_modules).and_return(mods)

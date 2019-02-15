@@ -15,7 +15,7 @@ module Vump
 
     def all_modules
       [
-        VersionFile
+        VersionFile,
       ]
     end
 

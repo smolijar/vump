@@ -3,7 +3,7 @@ require 'coveralls'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
+  Coveralls::SimpleCov::Formatter,
 ])
 SimpleCov.start do
   add_filter 'spec'
@@ -19,6 +19,7 @@ RSpec.configure do |config|
   config.before(:each) do |example|
     @i = 0
     @spec_description = example.metadata[:full_description]
+
     def snapshot_name
       @i += 1
       "#{@spec_description} #{@i}".gsub(/([^a-zA-Z0-9]+)/, '_').downcase
