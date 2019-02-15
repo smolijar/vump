@@ -34,7 +34,7 @@ class IrrelevantTestModule < Vump::BaseVersionModule
 end
 
 vump = Vump::Vump.new('/', :minor, silent: true)
-vump.logger.logger.level = Logger::UNKNOWN
+vump.logger.level = Logger::UNKNOWN
 
 RSpec.describe vump.class.name do
   context 'real modules' do

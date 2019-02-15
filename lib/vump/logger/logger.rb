@@ -1,8 +1,10 @@
 require 'logger'
+require 'forwardable'
 
 module Vump
   class Logger
-    attr_reader :logger
+    extend Forwardable
+    def_delegators :@logger, :level=
 
     def initialize(_options)
       @logger = ::Logger.new(STDOUT)
