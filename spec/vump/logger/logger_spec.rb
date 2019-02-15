@@ -2,7 +2,7 @@ require 'vump/logger/logger'
 require 'logger'
 
 io = StringIO.new
-logger = Vump::Logger.new({ out: io })
+logger = Vump::Logger.new(out: io)
 
 RSpec.describe Vump::Logger do
   context 'info' do
