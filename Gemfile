@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'command_line_reporter', '>=3.0'
+gem 'command_line_reporter', '~> 4.0.0'
 gem 'keepachangelog', '~> 0.5.3'
 
 group :test, :development do
