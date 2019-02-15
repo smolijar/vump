@@ -1,3 +1,5 @@
+require 'vump/cli/reporter'
+
 module Vump
   class Vump
     attr_reader :logger
@@ -7,38 +9,34 @@ module Vump
       @arg = arg
       @options = options
       @logger = Logger.new(options)
-      report_start
-    end
-
-    def report_start
-      @logger.debug("Base path: #{@base_path}")
-      @logger.debug("Arguments: #{@arg}")
-      @logger.debug("Options: #{@options}")
+      @reporter = Reporter.new(options)
+      @reporter.report_preamble(@base_path, @arg, @options)
     end
 
     def all_modules
       [
-        VersionFile
+        VersionFile,
       ]
     end
 
     def load_modules
       version_modules = all_modules.map { |m| m.new(@base_path) }
-      relevant_modules = version_modules.keep_if(&:relevant?)
-      @logger.debug("Loaded modules: #{version_modules.map(&:name)}")
-      @logger.debug("Relevant modules: #{relevant_modules.map(&:name)}")
+      relevant_modules = version_modules.select(&:relevant?)
+      @reporter.add_loaded_modules(version_modules)
+      @reporter.add_relevant_modules(relevant_modules)
       relevant_modules
     end
 
     def read_versions(modules)
       modules.map do |mod|
         version = mod.read
-        @logger.info("Read current version of \"#{version}\"", mod.name)
+        @reporter.add_read_version(mod, version)
         version
       end
     end
 
     def select_version(versions)
+      @reporter.report_module_overview
       if versions.uniq.length > 1
         @logger.warn("Inconsitent version records: #{versions}")
         return false
@@ -52,8 +50,9 @@ module Vump
     def write_versions(modules, version)
       modules.map do |mod|
         mod.write(version)
-        @logger.info("Writing new version \"#{version}\"", mod.class)
+        @logger.debug("Writing new version \"#{version}\"", mod.class)
       end
+      @logger.info("All relevant modules written \"#{version}\"")
     end
 
     def start

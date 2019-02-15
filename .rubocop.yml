@@ -4,10 +4,13 @@ Documentation:
   Enabled: false
 Layout/IndentArray:
   EnforcedStyle: consistent
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
 Metrics/LineLength:
   Exclude:
     - 'spec/**/*.rb'
-
 Metrics/BlockLength:
   Exclude:
     - 'Rakefile'

@@ -25,7 +25,7 @@ class TestModule
   end
 end
 
-class IrrelevantTestModule
+class IrrelevantTestModule < Vump::BaseVersionModule
   def initialize(base_dir); end
 
   def relevant?
@@ -33,8 +33,8 @@ class IrrelevantTestModule
   end
 end
 
-vump = Vump::Vump.new('/', :minor, {})
-vump.logger.logger.level = Logger::UNKNOWN
+vump = Vump::Vump.new('/', :minor, silent: true)
+vump.logger.level = Logger::UNKNOWN
 
 RSpec.describe vump.class.name do
   context 'real modules' do
@@ -46,7 +46,7 @@ RSpec.describe vump.class.name do
     before :each do
       mods = [
         TestModule,
-        IrrelevantTestModule
+        IrrelevantTestModule,
       ]
       allow_any_instance_of(Vump::Vump).to(
         receive(:all_modules).and_return(mods)

@@ -9,15 +9,15 @@ module Vump
     def load(string)
       # <numeral>[-<sufix>]
       version, sufix = string
-                       .match(/([\d\.]+)(?:\-)?(.*)?/)
-                       .captures
+        .match(/([\d\.]+)(?:\-)?(.*)?/)
+        .captures
       # <sufix>:= [<pre>][+<build>]
       @pre, @build = sufix.split('+', 2).map { |s| s.empty? ? false : s }
       # <numeral>:= <major>.<minor>.<patch>
       @major, @minor, @patch = version
-                               .match(/(\d+)\.(\d+)\.(\d+)/)
-                               .captures
-                               .map(&:to_i)
+        .match(/(\d+)\.(\d+)\.(\d+)/)
+        .captures
+        .map(&:to_i)
     end
 
     def reset(what)

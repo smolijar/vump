@@ -1,6 +1,5 @@
 ---
 "./spec/vump/meta_spec.rb[1:1]":
-  :version: 1.2.0
   :author: Jaroslav Šmolík
   :name: vump
   :description: Semantic version bumper. CLI tool to easily manage projects using

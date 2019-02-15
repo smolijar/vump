@@ -1,11 +1,13 @@
 require 'logger'
+require 'forwardable'
 
 module Vump
   class Logger
-    attr_reader :logger
+    extend Forwardable
+    def_delegators :@logger, :level=
 
-    def initialize(_options)
-      @logger = ::Logger.new(STDOUT)
+    def initialize(options = {})
+      @logger = ::Logger.new(options[:out] || STDOUT)
       @logger.formatter = proc do |_severity, _datetime, progname, msg|
         progname ? "[#{progname}] #{msg}\n" : "#{msg}\n"
       end
