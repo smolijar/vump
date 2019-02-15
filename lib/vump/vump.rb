@@ -50,8 +50,9 @@ module Vump
     def write_versions(modules, version)
       modules.map do |mod|
         mod.write(version)
-        @logger.info("Writing new version \"#{version}\"", mod.class)
+        @logger.debug("Writing new version \"#{version}\"", mod.class)
       end
+      @logger.info("All relevant modules written \"#{version}\"")
     end
 
     def start
