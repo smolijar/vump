@@ -2,7 +2,7 @@ require 'vump/modules/version/version_file'
 
 mod = Vump::VersionFile.new('')
 
-RSpec.describe Vump::BaseVersionModule do
+RSpec.describe Vump::VersionFile do
   it 'filename' do
     expect(mod.filename).to eql('VERSION')
   end
