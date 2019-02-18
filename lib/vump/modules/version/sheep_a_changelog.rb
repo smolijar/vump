@@ -13,7 +13,7 @@ module Vump
       doc.latest_version(1)
     end
 
-    def compose(_contents, version)
+    def compose(contents, version)
       doc = ::SheepAChangelog.parse(contents)
       doc.release(version, 'v')
       doc.to_s
