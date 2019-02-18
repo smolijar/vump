@@ -1,4 +1,5 @@
 require 'vump/cli/reporter'
+require 'vump/modules/version/sheep_a_changelog'
 
 module Vump
   class Vump
@@ -15,7 +16,8 @@ module Vump
 
     def all_modules
       [
-        VersionFile,
+        ::Vump::VersionFile,
+        ::Vump::SheepAChangelog,
       ]
     end
 

@@ -1,3 +1,5 @@
+require 'vump/modules/version/version_file'
+
 module Vump
   module Meta
     def self.name
