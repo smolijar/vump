@@ -6,22 +6,26 @@ module Vump
       raise NotImplementedError, "Missing filename on #{name}"
     end
 
+    def file_path
+      File.expand_path(filename, @base_path)
+    end
+
     def relevant?
-      File.file?(File.expand_path(filename, @base_path))
+      File.file?(file_path)
     end
 
     def to_stage
-      [File.expand_path(filename, @base_path)]
+      [file_path]
     end
 
     def read
-      @contents = File.read(File.expand_path(filename, @base_path))
+      @contents = File.read(file_path)
       select(@contents)
     end
 
     def write(version)
       contents = compose(@contents, version)
-      File.write(File.expand_path(filename, @base_path), contents)
+      File.write(file_path, contents)
     end
 
     def select(_contents)

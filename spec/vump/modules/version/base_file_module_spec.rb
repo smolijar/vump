@@ -29,6 +29,9 @@ RSpec.describe Vump::BaseVersionModule do
     it 'filename' do
       expect { mod.filename }.to raise_error(NotImplementedError)
     end
+    it 'to_stage' do
+      expect { mod.to_stage }.to raise_error(NotImplementedError)
+    end
     it 'select' do
       expect { mod.select('') }.to raise_error(NotImplementedError)
     end
