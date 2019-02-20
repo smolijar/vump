@@ -8,6 +8,10 @@ module Vump
       false
     end
 
+    def to_stage
+      raise NotImplementedError, "Missing to_stage on #{name}"
+    end
+
     def read
       raise NotImplementedError, "Missing read on #{name}"
     end

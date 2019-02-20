@@ -24,5 +24,9 @@ module Vump
     def warn(message, module_name = nil)
       @logger.add(::Logger::WARN, message, module_name)
     end
+
+    def error(message, module_name = nil)
+      @logger.add(::Logger::ERROR, message, module_name)
+    end
   end
 end

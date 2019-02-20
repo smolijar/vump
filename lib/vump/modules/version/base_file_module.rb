@@ -10,6 +10,10 @@ module Vump
       File.file?(File.expand_path(filename, @base_path))
     end
 
+    def to_stage
+      [File.expand_path(filename, @base_path)]
+    end
+
     def read
       @contents = File.read(File.expand_path(filename, @base_path))
       select(@contents)
