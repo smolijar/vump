@@ -57,13 +57,13 @@ module Vump
         @logger.debug("Writing new version \"#{version}\"", mod.class)
       end
       @logger.info("All relevant modules written \"#{version}\"")
-      if (@git.loaded?)
+      if @git.loaded?
         files_to_stage = modules.map(&:to_stage).flatten
         @logger.debug("Staging files: #{files_to_stage}")
         @git.stage(files_to_stage)
         @logger.debug('Files staged')
         message = @git.commit(version)
-        if (message)
+        if message
           @logger.info("Created commit #{message}")
           @git.tag(version)
           @logger.info("Created tag #{version}")

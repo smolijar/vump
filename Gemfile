@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'command_line_reporter', '~> 4.0.0'
+gem 'git', '~> 1.5'
 gem 'keepachangelog', '~> 0.5.3'
 gem 'sheep-a-changelog', '~> 0.3.0'
-gem 'git', '~> 1.5'
 
 group :test, :development do
   gem 'coveralls', require: false

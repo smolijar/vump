@@ -3,11 +3,9 @@ require 'git'
 module Vump
   class Git
     def initialize(base)
-      begin
-        @git = ::Git.open(base)
-      rescue ArgumentError
-        @git = nil
-      end
+      @git = ::Git.open(base)
+    rescue ArgumentError
+      @git = nil
     end
 
     def loaded?
