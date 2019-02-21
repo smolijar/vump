@@ -24,7 +24,7 @@ end
 mocked_mod = SampleFileVersionModule.new(PATH)
 mod = Vump::BaseFileVersionModule.new(PATH)
 
-RSpec.describe Vump::BaseVersionModule do
+RSpec.describe Vump::BaseModule do
   context 'bare' do
     it 'filename' do
       expect { mod.filename }.to raise_error(NotImplementedError)

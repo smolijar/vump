@@ -26,7 +26,7 @@ class TestModule
   end
 end
 
-class IrrelevantTestModule < Vump::BaseVersionModule
+class IrrelevantTestModule < Vump::BaseModule
   def initialize(base_dir); end
 
   def relevant?

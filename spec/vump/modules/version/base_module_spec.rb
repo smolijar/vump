@@ -1,9 +1,9 @@
 require 'vump/modules/version/base_module'
 
 path = '/foo'
-version_module = Vump::BaseVersionModule.new(path)
+version_module = Vump::BaseModule.new(path)
 
-RSpec.describe Vump::BaseVersionModule do
+RSpec.describe Vump::BaseModule do
   it 'initialize' do
     expect(version_module.instance_variable_get('@base_path')).to be(path)
   end
@@ -13,7 +13,7 @@ RSpec.describe Vump::BaseVersionModule do
   end
 
   it 'name' do
-    expect(version_module.name).to eql(Vump::BaseVersionModule.name)
+    expect(version_module.name).to eql(Vump::BaseModule.name)
   end
 
   it 'read' do
