@@ -7,7 +7,7 @@ TARGET = 'sample.txt'.freeze
 CONTENTS = "Current version is #{VERSION}\n".freeze
 TARGET_PATH = File.expand_path(TARGET, PATH).freeze
 
-class SampleFileVersionModule < Vump::BaseFileVersionModule
+class SampleFileVersionModule < Vump::BaseFileModule
   def filename
     TARGET
   end
@@ -22,7 +22,7 @@ class SampleFileVersionModule < Vump::BaseFileVersionModule
 end
 
 mocked_mod = SampleFileVersionModule.new(PATH)
-mod = Vump::BaseFileVersionModule.new(PATH)
+mod = Vump::BaseFileModule.new(PATH)
 
 RSpec.describe Vump::BaseModule do
   context 'bare' do

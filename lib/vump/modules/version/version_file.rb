@@ -1,7 +1,7 @@
 require 'vump/modules/version/base_file_module'
 
 module Vump
-  class VersionFile < BaseFileVersionModule
+  class VersionFile < BaseFileModule
     def filename
       'VERSION'
     end
