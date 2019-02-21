@@ -7,6 +7,10 @@ module Vump
       'CHANGELOG.md'
     end
 
+    def name
+      'Changelog'
+    end
+
     def select(contents)
       doc = ::SheepAChangelog.parse(contents)
       doc.latest_version(1)

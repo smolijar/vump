@@ -6,6 +6,10 @@ module Vump
       'VERSION'
     end
 
+    def name
+      filename
+    end
+
     def select(contents)
       contents.strip
     end
