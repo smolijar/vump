@@ -13,9 +13,9 @@ module Vump
       @arg = arg
       @options = options
       @logger = ::Vump::Logger.new(@options)
-      @options[:logger] = @logger
       @reporter = Reporter.new(@options)
       @reporter.report_preamble(@base_path, @arg, @options)
+      @options[:logger] = @logger
       @git = Git.new(@base_path, @options)
     end
 
