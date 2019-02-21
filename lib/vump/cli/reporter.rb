@@ -1,5 +1,15 @@
 require 'command_line_reporter'
 require 'logger'
+require 'vump/meta'
+
+FRAGMENTS1 = <<'_'
+
+                                                          |\__/,|   (`\
+                                      Vump              _.|o o  |_   ) )
+_
+FRAGMENTS2 = <<'_'
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━(((━━━(((━━━━━━━━━━━━━━━━
+_
 
 module Vump
   class Reporter
@@ -27,15 +37,10 @@ module Vump
     def report_preamble(base_path, arg, options)
       return if @level > ::Logger::INFO
 
-      header(
-        title: 'Vump',
-        width: 80,
-        align: 'center',
-        rule: true,
-        color: 'yellow',
-        bold: true,
-        timestamp: true
-      )
+      puts FRAGMENTS1.chomp.bold.yellow + ' ' + Meta::version.yellow
+      puts FRAGMENTS2.chomp.bold.yellow
+      puts "#{' ' * 27} Semantic version bumper".yellow
+
       table(border: false) do
         row do
           column('Base path')
