@@ -1,7 +1,8 @@
 module Vump
   class BaseVersionModule
-    def initialize(base_path)
+    def initialize(base_path, options = {})
       @base_path = base_path
+      @options = options
     end
 
     def relevant?

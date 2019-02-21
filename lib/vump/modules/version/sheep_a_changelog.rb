@@ -15,7 +15,7 @@ module Vump
 
     def compose(contents, version)
       doc = ::SheepAChangelog.parse(contents)
-      doc.release(version, 'v')
+      doc.release(version, @options[:version_prefix] || 'v', @options[:date])
       doc.to_s
     end
   end
