@@ -1,4 +1,3 @@
-require 'root'
 require 'vump/modules/version/base_file_module'
 require 'sheep-a-changelog'
 
