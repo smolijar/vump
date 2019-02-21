@@ -1,4 +1,4 @@
-require 'vump/modules/version/base_module'
+require 'vump/modules/base_module'
 
 module Vump
   class BaseFileModule < BaseModule

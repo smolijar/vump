@@ -1,6 +1,6 @@
 require 'vump/cli/reporter'
 require 'vump/logger/logger'
-require 'vump/modules/version/sheep_a_changelog'
+require 'vump/modules/sheep_a_changelog'
 require 'vump/git/git'
 require 'vump/semver/semver'
 

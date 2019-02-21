@@ -1,4 +1,4 @@
-require 'vump/modules/version/base_file_module'
+require 'vump/modules/base_file_module'
 
 VERSION = 'foo'.freeze
 NEW_VERSION = 'bar'.freeze
