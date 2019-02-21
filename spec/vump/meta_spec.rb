@@ -1,6 +1,6 @@
 require 'vump/meta'
 
-RSpec.describe 'Vump meta data' do
+RSpec.describe Vump::Meta do
   it 'works and is unchanged' do
     meta = %i[author name description email license homepage summary]
       .map { |m| [m, Vump::Meta.public_send(m)] }.to_h
