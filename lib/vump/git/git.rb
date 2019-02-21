@@ -24,7 +24,7 @@ module Vump
       message = "Release version #{version}"
       result = @git.commit(message)
       if @logger
-        if result
+        if result != ''
           @logger.info("Created commit #{message}")
         else
           @logger.error('Could not commit files. Perhaps the hook failed.')
