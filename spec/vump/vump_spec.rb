@@ -1,4 +1,5 @@
 require 'vump/vump'
+require 'git'
 
 class TestModule
   def initialize(base_dir); end
@@ -65,6 +66,42 @@ RSpec.describe vump.class.name do
     it 'start' do
       vump.start
       expect(TestModule.last_write).to eq('0.1.0')
+    end
+  end
+
+  context 'integration tests' do
+    sandbox_dir = File.expand_path('sandbox', __dir__)
+    version_path = File.expand_path('VERSION', sandbox_dir)
+    pre_commit_hook_path = File.expand_path('./.git/hooks/pre-commit', sandbox_dir)
+
+    before :all do
+      FileUtils.rm_rf(sandbox_dir)
+      FileUtils.mkdir_p(sandbox_dir)
+      git = Git.init(sandbox_dir)
+      git.config('user.name', 'Vump test')
+      git.config('user.email', 'vump@test.com')
+    end
+    after :all do
+      FileUtils.rm_rf(sandbox_dir)
+    end
+    it 'flow with version' do
+      git = Git.open(sandbox_dir)
+      File.write(version_path, "0.0.0\n")
+      git.add(version_path)
+      git.commit('Initial commit')
+      v = Vump::Vump.new(sandbox_dir, :minor, silent: true)
+      v.start
+      expect(git.gcommit('HEAD').message).to eql('Release version 0.1.0')
+      expect(git.tags.first.name).to eql('0.1.0')
+    end
+    it 'fail commit on hook' do
+      git = Git.open(sandbox_dir)
+      File.write(pre_commit_hook_path, "exit 1\n")
+      File.chmod(0o777, pre_commit_hook_path)
+      v = Vump::Vump.new(sandbox_dir, :minor, silent: true)
+      v.start
+      expect(git.gcommit('HEAD').message).to eql('Release version 0.1.0')
+      expect(git.tags.first.name).to eql('0.1.0')
     end
   end
 end

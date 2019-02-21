@@ -1,11 +1,16 @@
 module Vump
   class BaseVersionModule
-    def initialize(base_path)
+    def initialize(base_path, options = {})
       @base_path = base_path
+      @options = options
     end
 
     def relevant?
       false
+    end
+
+    def to_stage
+      raise NotImplementedError, "Missing to_stage on #{name}"
     end
 
     def read

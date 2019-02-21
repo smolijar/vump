@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.2'
 
   s.add_runtime_dependency 'command_line_reporter', '~> 4.0.0'
+  s.add_runtime_dependency 'git', '~> 1.5'
   s.add_runtime_dependency 'keepachangelog', '~> 0.5.3'
   s.add_runtime_dependency 'sheep-a-changelog', '~> 0.3.0'
 

@@ -1,6 +1,6 @@
 require 'vump/modules/version/sheep_a_changelog'
 
-mod = Vump::SheepAChangelog.new('')
+mod = Vump::SheepAChangelog.new('', date: Time.new(2019, 0o2, 20))
 
 RSpec.describe SheepAChangelog do
   it 'filename' do

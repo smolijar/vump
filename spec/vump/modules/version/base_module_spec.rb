@@ -23,4 +23,8 @@ RSpec.describe Vump::BaseVersionModule do
   it 'write' do
     expect { version_module.write('bar') }.to raise_error(NotImplementedError)
   end
+
+  it 'to_stage' do
+    expect { version_module.to_stage }.to raise_error(NotImplementedError)
+  end
 end
