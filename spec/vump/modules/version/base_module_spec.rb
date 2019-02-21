@@ -27,5 +27,4 @@ RSpec.describe Vump::BaseVersionModule do
   it 'to_stage' do
     expect { version_module.to_stage }.to raise_error(NotImplementedError)
   end
-
 end

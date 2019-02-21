@@ -97,7 +97,7 @@ RSpec.describe vump.class.name do
     it 'fail commit on hook' do
       git = Git.open(sandbox_dir)
       File.write(pre_commit_hook_path, "exit 1\n")
-      File.chmod(0777, pre_commit_hook_path)
+      File.chmod(0o777, pre_commit_hook_path)
       v = Vump::Vump.new(sandbox_dir, :minor, silent: true)
       v.start
       expect(git.gcommit('HEAD').message).to eql('Release version 0.1.0')

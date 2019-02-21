@@ -2,15 +2,16 @@ require 'command_line_reporter'
 require 'logger'
 require 'vump/meta'
 
-FRAGMENTS1 = <<'_'
+FRAGMENTS1 = <<'_'.freeze
 
                                                           |\__/,|   (`\
                                       Vump              _.|o o  |_   ) )
 _
-FRAGMENTS2 = <<'_'
+# rubocop:disable Layout/IndentHeredoc
+FRAGMENTS2 = <<'_'.freeze
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━(((━━━(((━━━━━━━━━━━━━━━━
 _
-
+# rubocop:enable Layout/IndentHeredoc
 module Vump
   class Reporter
     include CommandLineReporter
@@ -34,10 +35,11 @@ module Vump
     end
 
     # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/AbcSize
     def report_preamble(base_path, arg, options)
       return if @level > ::Logger::INFO
 
-      puts FRAGMENTS1.chomp.bold.yellow + ' ' + Meta::version.yellow
+      puts FRAGMENTS1.chomp.bold.yellow + ' ' + Meta.version.yellow
       puts FRAGMENTS2.chomp.bold.yellow
       puts "#{' ' * 27} Semantic version bumper".yellow
 
@@ -78,6 +80,7 @@ module Vump
       end
     end
 
+    # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
   end
 end
