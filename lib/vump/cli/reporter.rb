@@ -41,12 +41,12 @@ module Vump
 
       puts FRAGMENTS1.chomp.bold.yellow + ' ' + Meta.version.yellow
       puts FRAGMENTS2.chomp.bold.yellow
-      puts "#{' ' * 27} Semantic version bumper".yellow
+      puts "#{' ' * 27} Semantic version bumper\n".yellow
 
       table(border: false) do
         row do
-          column('Base path')
-          column(base_path, width: 30)
+          column('Base path', width: 10)
+          column(base_path, width: 70)
         end
         row do
           column('Argument')
