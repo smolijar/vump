@@ -1,4 +1,4 @@
-require 'vump/modules/version/version_file'
+require 'vump/modules/version_file'
 
 module Vump
   module Meta

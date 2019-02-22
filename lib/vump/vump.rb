@@ -1,6 +1,8 @@
 require 'vump/cli/reporter'
-require 'vump/modules/version/sheep_a_changelog'
+require 'vump/logger/logger'
+require 'vump/modules/sheep_a_changelog'
 require 'vump/git/git'
+require 'vump/semver/semver'
 
 module Vump
   class Vump
@@ -10,10 +12,10 @@ module Vump
       @base_path = base_path
       @arg = arg
       @options = options
-      @logger = Logger.new(@options)
-      @options[:logger] = @logger
+      @logger = ::Vump::Logger.new(@options)
       @reporter = Reporter.new(@options)
       @reporter.report_preamble(@base_path, @arg, @options)
+      @options[:logger] = @logger
       @git = Git.new(@base_path, @options)
     end
 

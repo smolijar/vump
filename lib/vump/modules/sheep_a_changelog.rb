@@ -1,11 +1,14 @@
-require 'root'
-require 'vump/modules/version/base_file_module'
+require 'vump/modules/base_file_module'
 require 'sheep-a-changelog'
 
 module Vump
-  class SheepAChangelog < BaseFileVersionModule
+  class SheepAChangelog < BaseFileModule
     def filename
       'CHANGELOG.md'
+    end
+
+    def name
+      'Changelog'
     end
 
     def select(contents)

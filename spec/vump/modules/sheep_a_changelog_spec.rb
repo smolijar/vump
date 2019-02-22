@@ -1,8 +1,8 @@
-require 'vump/modules/version/sheep_a_changelog'
+require 'vump/modules/sheep_a_changelog'
 
 mod = Vump::SheepAChangelog.new('', date: Time.new(2019, 0o2, 20))
 
-RSpec.describe SheepAChangelog do
+RSpec.describe Vump::SheepAChangelog do
   it 'filename' do
     expect(mod.filename).to eql('CHANGELOG.md')
   end

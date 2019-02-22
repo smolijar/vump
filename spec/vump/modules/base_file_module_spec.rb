@@ -1,4 +1,4 @@
-require 'vump/modules/version/base_file_module'
+require 'vump/modules/base_file_module'
 
 VERSION = 'foo'.freeze
 NEW_VERSION = 'bar'.freeze
@@ -7,7 +7,7 @@ TARGET = 'sample.txt'.freeze
 CONTENTS = "Current version is #{VERSION}\n".freeze
 TARGET_PATH = File.expand_path(TARGET, PATH).freeze
 
-class SampleFileVersionModule < Vump::BaseFileVersionModule
+class SampleFileVersionModule < Vump::BaseFileModule
   def filename
     TARGET
   end
@@ -22,9 +22,9 @@ class SampleFileVersionModule < Vump::BaseFileVersionModule
 end
 
 mocked_mod = SampleFileVersionModule.new(PATH)
-mod = Vump::BaseFileVersionModule.new(PATH)
+mod = Vump::BaseFileModule.new(PATH)
 
-RSpec.describe Vump::BaseVersionModule do
+RSpec.describe Vump::BaseModule do
   context 'bare' do
     it 'filename' do
       expect { mod.filename }.to raise_error(NotImplementedError)

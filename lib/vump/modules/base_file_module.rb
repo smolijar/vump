@@ -1,7 +1,7 @@
-require 'vump/modules/version/base_module'
+require 'vump/modules/base_module'
 
 module Vump
-  class BaseFileVersionModule < BaseVersionModule
+  class BaseFileModule < BaseModule
     def filename
       raise NotImplementedError, "Missing filename on #{name}"
     end

@@ -1,3 +1,5 @@
+require 'vump/vump'
+
 module Vump
   module CLI
     def self.parse_args(inputs) # rubocop:disable Metrics/MethodLength

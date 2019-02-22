@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
-require 'root'
+require 'vump/cli/cli'
 
 Vump::CLI.start(ARGV)

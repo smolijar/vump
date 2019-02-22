@@ -1,5 +1,5 @@
 $LOAD_PATH.unshift File.expand_path('lib', __dir__)
-require 'root'
+require 'vump/meta'
 
 Gem::Specification.new do |s|
   s.name = Vump::Meta.name

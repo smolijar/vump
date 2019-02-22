@@ -1,10 +1,13 @@
-require 'root'
-require 'vump/modules/version/base_file_module'
+require 'vump/modules/base_file_module'
 
 module Vump
-  class VersionFile < BaseFileVersionModule
+  class VersionFile < BaseFileModule
     def filename
       'VERSION'
+    end
+
+    def name
+      filename
     end
 
     def select(contents)
