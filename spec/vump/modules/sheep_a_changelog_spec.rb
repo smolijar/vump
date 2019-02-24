@@ -1,6 +1,7 @@
 require 'vump/modules/sheep_a_changelog'
 
-mod = Vump::SheepAChangelog.new('', date: Time.new(2019, 0o2, 20))
+mod = Vump::SheepAChangelog.new('', date: Time.new(2019, 2, 20))
+changelog = File.read(File.expand_path("examples/#{mod.filename}", __dir__))
 
 RSpec.describe Vump::SheepAChangelog do
   it 'filename' do
@@ -8,12 +9,10 @@ RSpec.describe Vump::SheepAChangelog do
   end
 
   it 'select' do
-    changelog = File.read(File.expand_path("examples/#{mod.filename}", __dir__))
     expect(mod.select(changelog)).to eql('0.1.0')
   end
 
   it 'compose' do
-    changelog = File.read(File.expand_path("examples/#{mod.filename}", __dir__))
     expect(mod.compose(changelog, '1.1.2')).to match_snapshot
   end
 end

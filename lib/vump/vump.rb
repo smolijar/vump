@@ -1,6 +1,9 @@
 require 'vump/cli/reporter'
 require 'vump/logger/logger'
 require 'vump/modules/sheep_a_changelog'
+require 'vump/modules/version_file'
+require 'vump/modules/package_json'
+require 'vump/modules/package_lock_json'
 require 'vump/git/git'
 require 'vump/semver/semver'
 
@@ -23,6 +26,8 @@ module Vump
       [
         ::Vump::VersionFile,
         ::Vump::SheepAChangelog,
+        ::Vump::PackageJson,
+        ::Vump::PackageLockJson,
       ]
     end
 
