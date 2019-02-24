@@ -55,6 +55,14 @@ module Vump
       end
     end
 
+    def pre(name)
+      @pre = name
+    end
+
+    def build(name)
+      @build = name
+    end
+
     def to_s
       str = "#{@major}.#{@minor}.#{@patch}"
       str << "-#{@pre}" if @pre

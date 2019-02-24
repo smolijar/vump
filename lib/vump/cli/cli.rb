@@ -54,9 +54,13 @@ module Vump
           acc[:version] = options[k]
         when :t, :tag_prefix, :'tag-prefix'
           acc[:tag_prefix] = options[k]
-        when :date
+        when :b, :build
+          acc[:build] = options[k]
+        when :pre
+          acc[:pre] = options[k]
+        when :d, :date
           acc[:date] = Time.parse(options[k]) rescue defaults[:date]
-        when :path
+        when :p, :path
           acc[:path] = options[k]
         else
           acc[k] = options[k]
