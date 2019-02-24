@@ -15,7 +15,7 @@ module Vump
       @parsed['version']
     end
 
-    def compose(contents, version)
+    def compose(_contents, version)
       json = @parsed.clone
       json['version'] = version
       JSON.pretty_generate(json) + "\n"

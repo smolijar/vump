@@ -1,6 +1,6 @@
 require 'vump/modules/sheep_a_changelog'
 
-mod = Vump::SheepAChangelog.new('', date: Time.new(2019, 02, 20))
+mod = Vump::SheepAChangelog.new('', date: Time.new(2019, 2, 20))
 changelog = File.read(File.expand_path("examples/#{mod.filename}", __dir__))
 
 RSpec.describe Vump::SheepAChangelog do
