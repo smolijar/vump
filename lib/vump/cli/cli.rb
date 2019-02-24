@@ -1,4 +1,5 @@
 require 'vump/vump'
+require 'time'
 
 module Vump
   module CLI
@@ -34,13 +35,41 @@ module Vump
       end
     end
 
+    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/CyclomaticComplexity
     def self.parse_options(options)
-      options
+      defaults = {
+        date: Time.now,
+        silent: false,
+        version: false,
+        tag_prefix: 'v',
+        path: Dir.pwd,
+      }
+      options.keys.each_with_object(defaults) do |k, acc|
+        case k
+        when :s, :silent
+          acc[:silent] = options[k]
+        when :v, :version
+          acc[:version] = options[k]
+        when :t, :tag_prefix, :'tag-prefix'
+          acc[:tag_prefix] = options[k]
+        when :date
+          acc[:date] = Time.parse(options[k]) rescue defaults[:date]
+        when :path
+          acc[:path] = options[k]
+        else
+          acc[k] = options[k]
+        end
+      end
     end
+    # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/CyclomaticComplexity
 
     def self.start(inputs)
       arg, opts = parse_inputs(inputs)
-      vump = ::Vump::Vump.new(Dir.pwd, arg, opts)
+      vump = ::Vump::Vump.new(opts[:path], arg, opts)
       vump.start
     end
   end

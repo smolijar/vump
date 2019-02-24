@@ -27,7 +27,7 @@ module Vump
     end
 
     def load_modules
-      version_modules = all_modules.map { |m| m.new(@base_path) }
+      version_modules = all_modules.map { |m| m.new(@base_path, @options) }
       relevant_modules = version_modules.select(&:relevant?)
       @reporter.add_loaded_modules(version_modules)
       @reporter.add_relevant_modules(relevant_modules)
