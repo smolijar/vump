@@ -79,8 +79,8 @@ module Vump
       version = select_version(read_versions(modules))
       semver = Semver.new(version)
       semver.bump(@arg)
-      semver.build(@options[:build]) if @options[:build]
-      semver.pre(@options[:pre]) if @options[:pre]
+      semver.build = @options[:build] if @options[:build]
+      semver.pre = @options[:pre] if @options[:pre]
       write_versions(modules, semver.to_s)
     end
   end
