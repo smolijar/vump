@@ -34,7 +34,7 @@ RSpec.describe cli.name do
   end
   context 'parse_inputs' do
     it 'parses' do
-      arg, opts = cli.parse_inputs(%w[-s min --build=alpha])
+      arg, opts = cli.parse_inputs(%w[-s min --build=alpha -v --t=xxx --pre=alpha --foo=bar --date=2012-10-05T00:00Z --path=/foo/bar])
       expect([arg, opts]).to match_snapshot
     end
   end

@@ -1,5 +1,7 @@
 module Vump
   class Semver
+    attr_accessor :major, :patch, :minor, :pre, :build
+
     def initialize(string = nil)
       @pre = @build = false
       @major = @minor = @patch = 0

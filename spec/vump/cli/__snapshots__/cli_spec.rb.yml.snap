@@ -14,5 +14,11 @@
   :foo: baz
 "./spec/vump/cli/cli_spec.rb[1:3:1]":
 - :minor
-- :s: true
+- :date: 2012-10-05 00:00:00.000000000 Z
+  :silent: true
+  :version: true
+  :tag_prefix: xxx
+  :path: "/foo/bar"
   :build: alpha
+  :pre: alpha
+  :foo: bar

@@ -2,7 +2,7 @@ require 'vump/vump'
 require 'git'
 
 class TestModule
-  def initialize(base_dir); end
+  def initialize(base_dir, opts = {}); end
 
   def relevant?
     true
@@ -27,7 +27,7 @@ class TestModule
 end
 
 class IrrelevantTestModule < Vump::BaseModule
-  def initialize(base_dir); end
+  def initialize(base_dir, opts = {}); end
 
   def relevant?
     false
