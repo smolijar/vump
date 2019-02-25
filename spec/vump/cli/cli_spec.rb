@@ -40,11 +40,11 @@ RSpec.describe cli.name do
   end
   context 'start' do
     before do
-      allow_any_instance_of(Vump::Vump).to receive(:start).and_return(:started)
+      allow_any_instance_of(Vump::Vump).to receive(:bump).and_return(:bumped)
       allow(STDOUT).to receive(:puts)
     end
     it 'starts' do
-      expect(cli.start([])).to eq(:started)
+      expect(cli.start([])).to eq(:bumped)
     end
   end
 end

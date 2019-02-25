@@ -1,4 +1,5 @@
 require 'vump/vump'
+require 'vump/meta'
 require 'time'
 
 module Vump
@@ -52,6 +53,8 @@ module Vump
           acc[:silent] = options[k]
         when :v, :version
           acc[:version] = options[k]
+        when :h, :help
+          acc[:help] = options[k]
         when :t, :tag_prefix, :'tag-prefix'
           acc[:tag_prefix] = options[k]
         when :b, :build
@@ -73,8 +76,16 @@ module Vump
 
     def self.start(inputs)
       arg, opts = parse_inputs(inputs)
+      if opts[:version]
+        puts ::Vump::Meta.version
+        return 2
+      end
       vump = ::Vump::Vump.new(opts[:path], arg, opts)
-      vump.start
+      if opts[:help]
+        vump.help
+      else
+        vump.bump(arg)
+      end
     end
   end
 end

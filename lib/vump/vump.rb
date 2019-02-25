@@ -79,7 +79,7 @@ module Vump
       @git.tag(version) if @git.commit(version)
     end
 
-    def start
+    def bump(arg)
       modules = load_modules
       version = select_version(read_versions(modules))
       semver = Semver.new(version)
@@ -87,6 +87,10 @@ module Vump
       semver.build = @options[:build] if @options[:build]
       semver.pre = @options[:pre] if @options[:pre]
       write_versions(modules, semver.to_s)
+    end
+
+    def help
+      puts 'HELP'
     end
   end
 end
