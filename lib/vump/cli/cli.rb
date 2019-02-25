@@ -76,15 +76,13 @@ module Vump
 
     def self.start(inputs)
       arg, opts = parse_inputs(inputs)
-      if opts[:version]
-        puts ::Vump::Meta.version
-        return 2
-      end
+      return puts ::Vump::Meta.version if opts[:version]
+
       vump = ::Vump::Vump.new(opts[:path], arg, opts)
       if opts[:help]
         vump.help
       else
-        vump.bump(arg)
+        vump.bump(arg, opts[:pre], opts[:build])
       end
     end
   end
