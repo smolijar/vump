@@ -55,7 +55,7 @@ module Vump
           acc[:silent] = options[k]
         when :verbose
           acc[:verbose] = options[k]
-        when :dry
+        when :d, :dry
           acc[:dry] = options[k]
         when :v, :version
           acc[:version] = options[k]
@@ -67,7 +67,7 @@ module Vump
           acc[:build] = options[k]
         when :pre
           acc[:pre] = options[k]
-        when :d, :date
+        when :date
           acc[:date] = Time.parse(options[k]) rescue defaults[:date]
         when :p, :path
           acc[:path] = options[k]

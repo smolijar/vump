@@ -34,7 +34,8 @@ module Vump
           ['-t, --tag-prefix', '=@foo/v', 'Modify version string prefix for git tag (default "v")'],
           ['-b, --build', '=001', 'Set semver\'s build tag (default none)'],
           ['--pre', '=alpha1', 'Set semver\'s pre release tag (default none)'],
-          ['-d, --date', '=2020-12-20', 'Modify date of committing release. Used by changelog. (default now)'],
+          ['--date', '=2020-12-20', 'Modify date of committing release. Used by changelog. (default now)'],
+          ['-d, --dry', '', 'Dry run (no writes or CSV manipulation)'],
           ['-p, --path', '=/foo/bar', 'Path to the repo (default pwd)'],
         ].each do |option, arg, descr|
           row do

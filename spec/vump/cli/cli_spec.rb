@@ -34,7 +34,7 @@ RSpec.describe cli.name do
   end
   context 'parse_inputs' do
     it 'parses' do
-      arg, opts = cli.parse_inputs(%w[-s min --build=alpha -v --t=xxx --pre=alpha --foo=bar --date=2012-10-05T00:00Z --path=/foo/bar])
+      arg, opts = cli.parse_inputs(%w[-s min --build=alpha -v --t=xxx --pre=alpha --foo=bar --date=2012-10-05T00:00Z --path=/foo/bar --verbose -h --dry])
       expect([arg, opts]).to match_snapshot
     end
   end
@@ -43,8 +43,11 @@ RSpec.describe cli.name do
       allow_any_instance_of(Vump::Vump).to receive(:bump).and_return(:bumped)
       allow(STDOUT).to receive(:puts)
     end
-    it 'starts' do
+    it 'bumps' do
       expect(cli.start([])).to eq(:bumped)
+    end
+    it 'helps' do
+      cli.start(['-h', '--verbose'])
     end
   end
 end
