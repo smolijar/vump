@@ -19,6 +19,7 @@ module Vump
     def initialize(options)
       @modules = {}
       @level = ::Logger::INFO
+      @level = ::Logger::DEBUG if options[:verbose]
       @level = ::Logger::UNKNOWN if options[:silent]
     end
 
@@ -65,6 +66,8 @@ module Vump
       puts FRAGMENTS1.chomp.bold.yellow + ' ' + Meta.version.yellow
       puts FRAGMENTS2.chomp.bold.yellow
       puts "#{' ' * 27} Semantic version bumper\n".yellow
+
+      return if @level > ::Logger::DEBUG
 
       table(border: false) do
         row do

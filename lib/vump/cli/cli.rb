@@ -43,6 +43,7 @@ module Vump
       defaults = {
         date: Time.now,
         silent: false,
+        verbose: false,
         version: false,
         tag_prefix: 'v',
         path: Dir.pwd,
@@ -51,6 +52,8 @@ module Vump
         case k
         when :s, :silent
           acc[:silent] = options[k]
+        when :verbose
+          acc[:verbose] = options[k]
         when :v, :version
           acc[:version] = options[k]
         when :h, :help
