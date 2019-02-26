@@ -25,7 +25,7 @@ module Vump
 
     def write(version)
       contents = compose(@contents, version)
-      File.write(file_path, contents)
+      File.write(file_path, contents) unless @options[:dry]
     end
 
     def select(_contents)

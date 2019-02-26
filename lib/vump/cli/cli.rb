@@ -42,6 +42,7 @@ module Vump
     def self.parse_options(options)
       defaults = {
         date: Time.now,
+        dry: false,
         silent: false,
         verbose: false,
         version: false,
@@ -54,6 +55,8 @@ module Vump
           acc[:silent] = options[k]
         when :verbose
           acc[:verbose] = options[k]
+        when :dry
+          acc[:dry] = options[k]
         when :v, :version
           acc[:version] = options[k]
         when :h, :help

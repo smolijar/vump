@@ -11,11 +11,6 @@ RSpec.describe Vump::Reporter do
     it 'Contains some header' do
       expect { report.call }.to output(/Vump/).to_stdout
     end
-    it 'Contains path, arg, options' do
-      expect { report.call }.to output(/__path__/).to_stdout
-      expect { report.call }.to output(/__arg__/).to_stdout
-      expect { report.call }.to output(/__opt__/).to_stdout
-    end
   end
 
   context 'report_module_overview' do
