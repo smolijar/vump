@@ -31,6 +31,7 @@ module Vump
           ['-s, --silent', '', 'Restrict output'],
           ['-v, --version', '', 'Output Vump\'s version'],
           ['-h, --help', '', 'Print this help'],
+          ['--no-git', '', 'Skip staging, commit and tag'],
           ['-t, --tag-prefix', '=@foo/v', 'Modify version string prefix for git tag (default "v")'],
           ['-b, --build', '=001', 'Set semver\'s build tag (default none)'],
           ['--pre', '=alpha1', 'Set semver\'s pre release tag (default none)'],

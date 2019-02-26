@@ -67,7 +67,7 @@ module Vump
       @logger.info("All relevant modules written \"#{version}\"")
 
       if @git.loaded?
-        commit(modules, version)
+        commit(modules, version) unless @options[:no_git]
       else
         @logger.info('Not in a git repository, no stage or commit.')
       end

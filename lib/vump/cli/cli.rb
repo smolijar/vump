@@ -43,6 +43,7 @@ module Vump
       defaults = {
         date: Time.now,
         dry: false,
+        no_git: false,
         silent: false,
         verbose: false,
         version: false,
@@ -57,6 +58,8 @@ module Vump
           acc[:verbose] = options[k]
         when :d, :dry
           acc[:dry] = options[k]
+        when :'no-git', :no_git
+          acc[:no_git] = options[k]
         when :v, :version
           acc[:version] = options[k]
         when :h, :help
