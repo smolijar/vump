@@ -90,7 +90,7 @@ module Vump
     end
 
     def help
-      puts 'HELP'
+      @reporter.help
     end
   end
 end
