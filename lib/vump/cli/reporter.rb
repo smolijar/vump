@@ -23,8 +23,23 @@ module Vump
       @level = ::Logger::UNKNOWN if options[:silent]
     end
 
+    def add_loaded_modules(mods)
+      mods.map(&:name).each { |m| @modules[m] = { loaded: true } }
+    end
+
+    def add_relevant_modules(mods)
+      mods.map(&:name).each { |m| @modules[m][:relevant] = true }
+    end
+
+    def add_read_version(mod, version)
+      @modules[mod.name][:read_version] = version
+    end
+
+    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/LineLength
     def help
-      puts ('vump'.bold.yellow + ' <major|minor|patch> [...options]'.yellow)
+      puts 'vump'.bold.yellow + ' <major|minor|patch> [...options]'.yellow
       header title: 'Available options:'
       table(border: false) do
         [
@@ -48,20 +63,6 @@ module Vump
       end
     end
 
-    def add_loaded_modules(mods)
-      mods.map(&:name).each { |m| @modules[m] = { loaded: true } }
-    end
-
-    def add_relevant_modules(mods)
-      mods.map(&:name).each { |m| @modules[m][:relevant] = true }
-    end
-
-    def add_read_version(mod, version)
-      @modules[mod.name][:read_version] = version
-    end
-
-    # rubocop:disable Metrics/MethodLength
-    # rubocop:disable Metrics/AbcSize
     def report_preamble(base_path, arg, options)
       return if @level > ::Logger::INFO
 
@@ -110,5 +111,6 @@ module Vump
 
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/LineLength
   end
 end

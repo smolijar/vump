@@ -39,6 +39,7 @@ module Vump
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/BlockLength
     def self.parse_options(options)
       defaults = {
         date: Time.now,
@@ -82,6 +83,7 @@ module Vump
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/BlockLength
 
     def self.start(inputs)
       arg, opts = parse_inputs(inputs)

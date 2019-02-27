@@ -23,8 +23,7 @@ module Vump
 
     def commit(version)
       message = "Release version #{version}"
-      result = 'Dry run success'
-      result = @git.commit(message) unless @options[:dry]
+      result = @options[:dry] ? 'Dry run success' : @git.commit(message)
       if @logger
         if result != ''
           @logger.info("Created commit #{message}")
