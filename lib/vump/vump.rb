@@ -67,7 +67,7 @@ module Vump
       @logger.info("All relevant modules written \"#{version}\"")
 
       if @git.loaded?
-        commit(modules, version)
+        commit(modules, version) unless @options[:no_git]
       else
         @logger.info('Not in a git repository, no stage or commit.')
       end
@@ -79,14 +79,18 @@ module Vump
       @git.tag(version) if @git.commit(version)
     end
 
-    def start
+    def bump(arg = false, pre = false, build = false)
       modules = load_modules
       version = select_version(read_versions(modules))
       semver = Semver.new(version)
-      semver.bump(@arg)
-      semver.build = @options[:build] if @options[:build]
-      semver.pre = @options[:pre] if @options[:pre]
+      semver.bump(arg) if arg
+      semver.pre = pre if pre
+      semver.build = build if build
       write_versions(modules, semver.to_s)
+    end
+
+    def help
+      @reporter.help
     end
   end
 end

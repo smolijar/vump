@@ -6,6 +6,7 @@ module Vump
     def initialize(base, options = {})
       @git = ::Git.open(base)
       @logger = options[:logger]
+      @options = options
     rescue ArgumentError
       @git = nil
     end
@@ -16,13 +17,13 @@ module Vump
 
     def stage(files)
       @logger.debug("Staging files: #{files}") if @logger
-      @git.add(files)
+      @git.add(files) unless @options[:dry]
       @logger.debug('Files staged') if @logger
     end
 
     def commit(version)
       message = "Release version #{version}"
-      result = @git.commit(message)
+      result = @options[:dry] ? 'Dry run success' : @git.commit(message)
       if @logger
         if result != ''
           @logger.info("Created commit #{message}")
@@ -34,7 +35,7 @@ module Vump
     end
 
     def tag(version_tag)
-      @git.add_tag(version_tag)
+      @git.add_tag(version_tag) unless @options[:dry]
       @logger.info("Created tag #{version_tag}") if @logger
     end
   end

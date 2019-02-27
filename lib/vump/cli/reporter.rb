@@ -19,6 +19,7 @@ module Vump
     def initialize(options)
       @modules = {}
       @level = ::Logger::INFO
+      @level = ::Logger::DEBUG if options[:verbose]
       @level = ::Logger::UNKNOWN if options[:silent]
     end
 
@@ -36,12 +37,40 @@ module Vump
 
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/LineLength
+    def help
+      puts 'vump'.bold.yellow + ' <major|minor|patch> [...options]'.yellow
+      header title: 'Available options:'
+      table(border: false) do
+        [
+          ['-s, --silent', '', 'Restrict output'],
+          ['-v, --version', '', 'Output Vump\'s version'],
+          ['-h, --help', '', 'Print this help'],
+          ['--no-git', '', 'Skip staging, commit and tag'],
+          ['-t, --tag-prefix', '=@foo/v', 'Modify version string prefix for git tag (default "v")'],
+          ['-b, --build', '=001', 'Set semver\'s build tag (default none)'],
+          ['--pre', '=alpha1', 'Set semver\'s pre release tag (default none)'],
+          ['--date', '=2020-12-20', 'Modify date of committing release. Used by changelog. (default now)'],
+          ['-d, --dry', '', 'Dry run (no writes or CSV manipulation)'],
+          ['-p, --path', '=/foo/bar', 'Path to the repo (default pwd)'],
+        ].each do |option, arg, descr|
+          row do
+            column(option, width: 18, color: 'yellow')
+            column(arg, width: 12, color: 'cyan')
+            column(descr, width: 40)
+          end
+        end
+      end
+    end
+
     def report_preamble(base_path, arg, options)
       return if @level > ::Logger::INFO
 
       puts FRAGMENTS1.chomp.bold.yellow + ' ' + Meta.version.yellow
       puts FRAGMENTS2.chomp.bold.yellow
       puts "#{' ' * 27} Semantic version bumper\n".yellow
+
+      return if @level > ::Logger::DEBUG
 
       table(border: false) do
         row do
@@ -82,5 +111,6 @@ module Vump
 
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/LineLength
   end
 end

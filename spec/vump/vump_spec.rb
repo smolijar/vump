@@ -64,7 +64,7 @@ RSpec.describe vump.class.name do
       expect(vump.select_version(%w[a])).to be_truthy
     end
     it 'start' do
-      vump.start
+      vump.bump(:minor)
       expect(TestModule.last_write).to eq('0.1.0')
     end
   end
@@ -90,7 +90,7 @@ RSpec.describe vump.class.name do
       git.add(version_path)
       git.commit('Initial commit')
       v = Vump::Vump.new(sandbox_dir, :minor, silent: true)
-      v.start
+      v.bump(:minor)
       expect(git.gcommit('HEAD').message).to eql('Release version 0.1.0')
       expect(git.tags.first.name).to eql('0.1.0')
     end
@@ -99,7 +99,7 @@ RSpec.describe vump.class.name do
       File.write(pre_commit_hook_path, "exit 1\n")
       File.chmod(0o777, pre_commit_hook_path)
       v = Vump::Vump.new(sandbox_dir, :minor, silent: true)
-      v.start
+      v.bump(:minor)
       expect(git.gcommit('HEAD').message).to eql('Release version 0.1.0')
       expect(git.tags.first.name).to eql('0.1.0')
     end
