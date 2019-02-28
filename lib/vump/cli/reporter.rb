@@ -39,7 +39,7 @@ module Vump
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/LineLength
     def help
-      puts 'vump'.bold.yellow + ' <major|minor|patch> [...options]'.yellow
+      puts 'vump'.bold.yellow + ' [<major|minor|patch|<semver-string>>] [...options]'.yellow
       header title: 'Available options:'
       table(border: false) do
         [

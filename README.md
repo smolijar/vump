@@ -26,7 +26,7 @@ gem install vump
 ## Usage
 
 ```
-vump <major|minor|patch> [...options]
+vump [<major|minor|patch|<semver-string>>] [...options]
 ```
 
 | Option               | Example value | Explanation                                                         |
