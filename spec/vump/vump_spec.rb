@@ -84,6 +84,18 @@ RSpec.describe vump.class.name do
     after :all do
       FileUtils.rm_rf(sandbox_dir)
     end
+    it 'set custom version' do
+      File.write(version_path, "0.0.0\n")
+      v = Vump::Vump.new(sandbox_dir, '0.2.0', silent: true)
+      v.bump('0.2.0')
+      expect(File.read(version_path)).to eql("0.2.0\n")
+    end
+    it 'set custom invalid version and no change' do
+      File.write(version_path, "0.0.0\n")
+      v = Vump::Vump.new(sandbox_dir, '0.foo.1', silent: true)
+      v.bump('0.foo.1')
+      expect(File.read(version_path)).to eql("0.0.0\n")
+    end
     it 'flow with version' do
       git = Git.open(sandbox_dir)
       File.write(version_path, "0.0.0\n")

@@ -25,11 +25,14 @@ RSpec.describe cli.name do
     it 'minor with typo' do
       expect(cli.parse_arg(%w[minro])).to eql(:minor)
     end
-    it 'patch on invalid' do
-      expect(cli.parse_arg(%w[brekeke])).to eql(:patch)
+    it 'patch' do
+      expect(cli.parse_arg(%w[patch])).to eql(:patch)
     end
-    it 'patch on default' do
-      expect(cli.parse_arg([])).to eql(:patch)
+    it 'keep on invalid' do
+      expect(cli.parse_arg(%w[brekeke])).to eql('brekeke')
+    end
+    it 'nil on default' do
+      expect(cli.parse_arg([])).to eql(nil)
     end
   end
   context 'parse_inputs' do
