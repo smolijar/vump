@@ -10,22 +10,18 @@ module Vump
     end
 
     def load(string)
-      begin
-        # <numeral>[-<sufix>]
-        version, sufix = string
-          .match(/([\d\.]+)(?:\-)?(.*)?/)
-          .captures
-        # <sufix>:= [<pre>][+<build>]
-        @pre, @build = sufix.split('+', 2).map { |s| s.empty? ? false : s }
-        # <numeral>:= <major>.<minor>.<patch>
-        @major, @minor, @patch = version
-          .match(/(\d+)\.(\d+)\.(\d+)/)
-          .captures
-          .map(&:to_i)
-        @valid = true
-      rescue
-        @valid = false
-      end
+      # <numeral>[-<pre>][+<build>]
+      version, @pre, @build = string
+        .match(/([\d\.]+)(?:\-)?([^\+]*)(?:\+)?(.*)?/)
+        .captures
+      # <numeral>:= <major>.<minor>.<patch>
+      @major, @minor, @patch = version
+        .match(/(\d+)\.(\d+)\.(\d+)/)
+        .captures
+        .map(&:to_i)
+      @valid = true
+    rescue StandardError
+      @valid = false
     end
 
     def valid?
@@ -69,8 +65,8 @@ module Vump
 
     def to_s
       str = "#{@major}.#{@minor}.#{@patch}"
-      str << "-#{@pre}" if @pre
-      str << "+#{@build}" if @build
+      str << "-#{@pre}" if @pre && @pre != ''
+      str << "+#{@build}" if @build && @build != ''
       str
     end
   end
