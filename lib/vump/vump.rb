@@ -79,13 +79,16 @@ module Vump
       @git.tag(version) if @git.commit(version)
     end
 
-    def bump(arg = false, pre = false, build = false)
+    def bump(arg = nil, pre = nil, build = nil)
       modules = load_modules
       version = select_version(read_versions(modules))
       semver = Semver.new(version)
       semver.bump(arg) if arg
-      semver.pre = pre if pre
-      semver.build = build if build
+      if arg.is_a?(String)
+        semver = Semver.new(arg)
+      end
+      semver.pre = pre
+      semver.build = build
       write_versions(modules, semver.to_s)
     end
 
