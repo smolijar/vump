@@ -5,21 +5,31 @@ module Vump
     def initialize(string = nil)
       @pre = @build = false
       @major = @minor = @patch = 0
+      @valid = false
       load string if string
     end
 
     def load(string)
-      # <numeral>[-<sufix>]
-      version, sufix = string
-        .match(/([\d\.]+)(?:\-)?(.*)?/)
-        .captures
-      # <sufix>:= [<pre>][+<build>]
-      @pre, @build = sufix.split('+', 2).map { |s| s.empty? ? false : s }
-      # <numeral>:= <major>.<minor>.<patch>
-      @major, @minor, @patch = version
-        .match(/(\d+)\.(\d+)\.(\d+)/)
-        .captures
-        .map(&:to_i)
+      begin
+        # <numeral>[-<sufix>]
+        version, sufix = string
+          .match(/([\d\.]+)(?:\-)?(.*)?/)
+          .captures
+        # <sufix>:= [<pre>][+<build>]
+        @pre, @build = sufix.split('+', 2).map { |s| s.empty? ? false : s }
+        # <numeral>:= <major>.<minor>.<patch>
+        @major, @minor, @patch = version
+          .match(/(\d+)\.(\d+)\.(\d+)/)
+          .captures
+          .map(&:to_i)
+        @valid = true
+      rescue
+        @valid = false
+      end
+    end
+
+    def valid?
+      @valid
     end
 
     def reset(what)

@@ -89,7 +89,11 @@ module Vump
       end
       semver.pre = pre
       semver.build = build
-      write_versions(modules, semver.to_s)
+      if semver.valid?
+        write_versions(modules, semver.to_s)
+      else
+        @logger.error('Provided version is not a valid semver string')
+      end
     end
 
     def help
