@@ -5,7 +5,6 @@ module Vump
     def initialize(string = nil)
       @pre = @build = false
       @major = @minor = @patch = 0
-      @valid = false
       load string if string
     end
 
@@ -13,19 +12,18 @@ module Vump
       # <numeral>[-<pre>][+<build>]
       version, @pre, @build = string
         .match(/([\d\.]+)(?:\-)?([^\+]*)(?:\+)?(.*)?/)
-        .captures
+        .to_a
+        .drop(1)
       # <numeral>:= <major>.<minor>.<patch>
       @major, @minor, @patch = version
         .match(/(\d+)\.(\d+)\.(\d+)/)
-        .captures
+        .to_a
+        .drop(1)
         .map(&:to_i)
-      @valid = true
-    rescue StandardError
-      @valid = false
     end
 
     def valid?
-      @valid
+      [@major, @minor, @patch].all? { |v| v.is_a?(Numeric) }
     end
 
     def reset(what)
