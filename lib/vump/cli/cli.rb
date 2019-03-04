@@ -31,8 +31,10 @@ module Vump
         :major
       when /^mi.*/
         :minor
-      else
+      when /^p/
         :patch
+      else
+        args.first
       end
     end
 
@@ -49,6 +51,8 @@ module Vump
         verbose: false,
         version: false,
         tag_prefix: 'v',
+        build: nil,
+        pre: nil,
         path: Dir.pwd,
       }
       options.keys.each_with_object(defaults) do |k, acc|
