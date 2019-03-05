@@ -1,4 +1,5 @@
 require 'vump/modules/base_file_module'
+require 'json'
 
 module Vump
   class PackageJson < BaseFileModule
@@ -11,14 +12,14 @@ module Vump
     end
 
     def select(contents)
-      @parsed = JSON.parse(contents)
+      @parsed = ::JSON.parse(contents)
       @parsed['version']
     end
 
     def compose(_contents, version)
       json = @parsed.clone
       json['version'] = version
-      JSON.pretty_generate(json) + "\n"
+      ::JSON.pretty_generate(json) + "\n"
     end
   end
 end
