@@ -41,7 +41,14 @@ vump [<major|minor|patch|<semver-string>>] [...options]
 | `--date`   ,         | `2020-12-20`  | Modify date of committing release. Used by changelog. (default now) |
 | `--dry`    , `-d`    | -             | Dry run (no writes or CSV manipulation)                             |
 | `--path`   , `-p`    | `/foo/bar`    | Path to the repo (default pwd)                                      |
-
+## Related projects
+https://github.com/warner/python-versioneer
+https://www.npmjs.com/package/version-bump-prompt
+https://www.npmjs.com/package/npm-bump
+https://github.com/fabiospampinato/bump
+https://packagist.org/packages/quazardous/php-bump-version
+https://metacpan.org/pod/release/DBOOK/App-RewriteVersion-0.003/script/perl-bump-version
+https://github.com/killwort/dotnet-bump
 ## License
 
 Licensed under [MIT](./LICENSE)
