@@ -31,7 +31,7 @@ RSpec.describe Vump::Logger do
     end
     it 'outputs' do
       logger.error('foo')
-      expect(io.string).to eq("foo\n")
+      expect(io.string).to match(/foo/)
     end
   end
 end

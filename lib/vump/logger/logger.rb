@@ -28,7 +28,7 @@ module Vump
     end
 
     def error(message, module_name = nil)
-      @logger.add(::Logger::ERROR, message, module_name)
+      @logger.add(::Logger::ERROR, message.red, module_name)
     end
   end
 end
