@@ -26,7 +26,7 @@ module Vump
       result = @options[:dry] ? 'Dry run success' : @git.commit(message)
       if @logger
         if result != ''
-          @logger.info("Created commit #{message}")
+          @logger.info("Created commit #{message.yellow}")
         else
           @logger.error('Could not commit files. Perhaps the hook failed.')
         end
@@ -36,7 +36,7 @@ module Vump
 
     def tag(version_tag)
       @git.add_tag(version_tag) unless @options[:dry]
-      @logger.info("Created tag #{version_tag}") if @logger
+      @logger.info("Created tag #{version_tag.yellow}") if @logger
     end
   end
 end
