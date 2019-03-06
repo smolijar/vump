@@ -50,7 +50,7 @@ module Vump
     def select_version(versions)
       @reporter.report_module_overview
       if versions.uniq.length > 1
-        @logger.warn("Inconsitent version records: #{versions}")
+        @logger.error("Inconsitent version records: #{versions}")
         return false
       end
       @logger.info(
@@ -92,11 +92,12 @@ module Vump
     def bump(arg = nil, pre = nil, build = nil)
       modules = load_modules
       version = select_version(read_versions(modules))
+      return unless version
       semver = compose_version(version, arg, pre, build)
       if semver.valid?
         write_versions(modules, semver.to_s)
       else
-        @logger.error('Provided version is not a valid semver string')
+        @logger.error("Provided version #{arg} is not a valid semver string")
       end
     end
 
