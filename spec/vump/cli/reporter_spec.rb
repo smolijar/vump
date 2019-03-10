@@ -3,7 +3,7 @@ require 'vump/cli/reporter'
 class FooModule; end
 class BarModule; end
 
-reporter = Vump::Reporter.new({})
+reporter = Vump::Reporter.new(verbose: true)
 
 RSpec.describe Vump::Reporter do
   context 'report_preamble' do
