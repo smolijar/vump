@@ -38,6 +38,7 @@ module Vump
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/LineLength
+    # rubocop:disable Metrics/CyclomaticComplexity
     def help
       puts 'vump'.bold.yellow + ' [<major|minor|patch|<semver-string>>] [...options]'.yellow
       header title: 'Available options:'
@@ -99,6 +100,8 @@ module Vump
           column('READ VERSION', width: 20)
         end
         @modules.each do |name, data|
+          next if !data[:relevant] && @level > ::Logger::DEBUG
+
           row do
             rel = data[:relevant]
             column(name)
@@ -112,5 +115,6 @@ module Vump
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/LineLength
+    # rubocop:enable Metrics/CyclomaticComplexity
   end
 end

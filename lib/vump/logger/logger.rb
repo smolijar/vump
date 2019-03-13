@@ -8,6 +8,7 @@ module Vump
 
     def initialize(options = {})
       @logger = ::Logger.new(options[:out] || STDOUT)
+      @logger.level = ::Logger::INFO
       @logger.level = ::Logger::DEBUG if options[:verbose]
       @logger.level = ::Logger::UNKNOWN if options[:silent]
       @logger.formatter = proc do |_severity, _datetime, progname, msg|
@@ -28,7 +29,7 @@ module Vump
     end
 
     def error(message, module_name = nil)
-      @logger.add(::Logger::ERROR, message, module_name)
+      @logger.add(::Logger::ERROR, message.red, module_name)
     end
   end
 end
