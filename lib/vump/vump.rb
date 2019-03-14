@@ -76,7 +76,7 @@ module Vump
     def commit(modules, version)
       files_to_stage = modules.map(&:to_stage).flatten
       @git.stage(files_to_stage)
-      @git.tag(version) if @git.commit(version)
+      @git.tag("#{@options[:tag_prefix]}#{version}") if @git.commit(version)
     end
 
     def compose_version(latest, arg, pre, build)
