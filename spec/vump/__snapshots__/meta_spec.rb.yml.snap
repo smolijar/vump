@@ -1,0 +1,10 @@
+---
+"./spec/vump/meta_spec.rb[1:1]":
+  :author: Jaroslav Šmolík
+  :name: vump
+  :description: Semantic version bumper. CLI tool to easily manage projects using
+    semver and automate menial version raising.
+  :email: grissius@gmail.com
+  :license: MIT
+  :homepage: https://github.com/grissius/vump
+  :summary: Raise version version in root of semver project.

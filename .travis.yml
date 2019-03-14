@@ -1,7 +1,17 @@
 language: ruby
 rvm:
-  - 2.2.2
-
+- 2.2
+- 2.3
+- 2.4
+- 2.5
 script:
-  - bundle exec rake test
-  - bundle exec rake cs
+- bundle exec rake test
+- bundle exec rake cs
+deploy:
+  provider: rubygems
+  api_key:
+    secure: P6uWM6Wq6WAEXDmbBxP+LoXEKHDvow7OkDcF9ilGIO9VT6cBNevhm9ynwG7UkshegeXTLeurxLyubHBUn4ukUkoYu6v+rdUqOiw5WX8YlBcRNKJfYi5gI6EMBWsvcpnoAlO+7stQe+gHqnsAFO1J/Zz7vCMcAyfxXmiRScM1wvf8J0x9rCmkvF5GeKf3ePH3BpE8Zx5CeLE641dnGFNWInDMXYkJR56EWboTeceYgJNLZDyQrofQpDnVJ/J79aoa1KL4hxmV16NGs5fK6KF9jdagW2NbJyXc/Hzzq2dj29KFv6LYU5rt3dKnc3CpHLlET3kAaXvEkyr7BpU/CTBWXwOYkOSPkS/bckKrcDcH7OEeZpUdh5eBZujh1DVhHM363Lqh+9XIdz2tI77L0L6v4q716jIE4n3hrJ8DGl1BzazcBSS1ZvBlTZgdMgFXEo0i4cShkmXD6VlD+iR7cvivcMuHf8yBup6aSh71mAiNp5X+h2MEA1rrVE4m4NuWCQxJXDdJR+PZXu9nVVm6sZoC+V0FvfOOGNFteAfqRwsFaKztZrL/9GJI5KDCNsLf48lVkgdoW3uC+hf9infbFmJvhw/VjRyzH3OJk97OGRVOrlFrof6YSMTm23m04U6U0WMTuBRiq5wg9PnMzSdcwLZS05ZNrYtgBE7Zx9yo3QYB//s=
+  gem: vump
+  on:
+    tags: true
+    repo: grissius/vump

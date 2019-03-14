@@ -1,6 +1,7 @@
 module Vump
-  # Representation of version notation according to https://semver.org/
   class Semver
+    attr_accessor :major, :patch, :minor, :pre, :build
+
     def initialize(string = nil)
       @pre = @build = false
       @major = @minor = @patch = 0
@@ -8,17 +9,21 @@ module Vump
     end
 
     def load(string)
-      # <numeral>[-<sufix>]
-      version, sufix = string
-                       .match(/([\d\.]+)(?:\-)?(.*)?/)
-                       .captures
-      # <sufix>:= [<pre>][+<build>]
-      @pre, @build = sufix.split('+', 2).map { |s| s.empty? ? false : s }
+      # <numeral>[-<pre>][+<build>]
+      version, @pre, @build = string
+        .match(/([\d\.]+)(?:\-)?([^\+]*)(?:\+)?(.*)?/)
+        .to_a
+        .drop(1)
       # <numeral>:= <major>.<minor>.<patch>
       @major, @minor, @patch = version
-                               .match(/(\d+)\.(\d+)\.(\d+)/)
-                               .captures
-                               .map(&:to_i)
+        .match(/(\d+)\.(\d+)\.(\d+)/)
+        .to_a
+        .drop(1)
+        .map(&:to_i)
+    end
+
+    def valid?
+      [@major, @minor, @patch].all? { |v| v.is_a?(Numeric) }
     end
 
     def reset(what)
@@ -45,10 +50,21 @@ module Vump
       @major += 1
     end
 
+    def bump(what)
+      case what
+      when :patch
+        bump_patch
+      when :minor
+        bump_minor
+      when :major
+        bump_major
+      end
+    end
+
     def to_s
       str = "#{@major}.#{@minor}.#{@patch}"
-      str << "-#{@pre}" if @pre
-      str << "+#{@build}" if @build
+      str << "-#{@pre}" if @pre && @pre != ''
+      str << "+#{@build}" if @build && @build != ''
       str
     end
   end

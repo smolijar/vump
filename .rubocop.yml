@@ -1,2 +1,26 @@
-Style/ClassVars:
+AllCops:
+  TargetRubyVersion: 2.2
+Documentation:
   Enabled: false
+Layout/IndentArray:
+  EnforcedStyle: consistent
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+Style/RescueModifier:
+  Enabled: false
+Metrics/LineLength:
+  Exclude:
+    - 'spec/**/*.rb'
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - 'vump.gemspec'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+Style/ClassVars:
+  Exclude:
+    - 'spec/**/*.rb'
