@@ -4,9 +4,10 @@ require 'logger'
 module Vump
   class Git
     def initialize(base, options = {})
-      @git = ::Git.open(base)
-      @logger = options[:logger]
+      @base = base
       @options = options
+      @logger = options[:logger]
+      @git = ::Git.open(base)
     rescue ArgumentError
       @git = nil
     end
