@@ -39,5 +39,9 @@ module Vump
       @git.add_tag(version_tag) unless @options[:dry]
       @logger.info("Created tag #{version_tag.yellow}") if @logger
     end
+
+    def ignored?(path)
+      system("cd #{@base} && git check-ignore #{path}")
+    end
   end
 end
