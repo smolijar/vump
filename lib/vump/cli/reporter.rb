@@ -23,12 +23,8 @@ module Vump
       @level = ::Logger::UNKNOWN if options[:silent]
     end
 
-    def add_loaded_modules(mods)
-      mods.map(&:name).each { |m| @modules[m] = { loaded: true } }
-    end
-
-    def add_relevant_modules(mods)
-      mods.map(&:name).each { |m| @modules[m][:relevant] = true }
+    def report_modules(mods)
+      mods.each { |m| @modules[m.name] = {status: m.status} }
     end
 
     def add_read_version(mod, version)
@@ -100,13 +96,16 @@ module Vump
           column('READ VERSION', width: 20)
         end
         @modules.each do |name, data|
-          next if !data[:relevant] && @level > ::Logger::DEBUG
+          status = data[:status]
+          next if status === data[:loaded] && @level > ::Logger::DEBUG
 
+          color = nil
+          color = 'green' if status === :relevant
+          color = 'cyan' if status === :ignored
           row do
-            rel = data[:relevant]
             column(name)
-            column(rel ? 'relevant' : 'loaded', color: rel ? 'green' : nil)
-            column(data[:read_version], color: rel ? 'green' : nil)
+            column(status.to_s, color: color)
+            column(data[:read_version], color: color)
           end
         end
       end

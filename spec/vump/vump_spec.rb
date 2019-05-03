@@ -1,7 +1,8 @@
 require 'vump/vump'
 require 'git'
+require 'vump/modules/base_module'
 
-class TestModule
+class TestModule < Vump::BaseModule
   def initialize(base_dir, opts = {}); end
 
   def relevant?
@@ -32,6 +33,10 @@ class IrrelevantTestModule < Vump::BaseModule
   def relevant?
     false
   end
+
+  def read
+    nil
+  end
 end
 
 vump = Vump::Vump.new('/', :minor, silent: true)
@@ -54,7 +59,7 @@ RSpec.describe vump.class.name do
       )
     end
     it 'load_modules' do
-      expect(vump.load_modules.length).to be(1)
+      expect(vump.load_modules.length).to be(2)
     end
     it 'read_versions' do
       expect(vump.read_versions(vump.load_modules)).to match_snapshot
