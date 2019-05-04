@@ -106,7 +106,7 @@ This module also comes handy, when your metadata are stored in a non-static file
 - **JavaScript / Node.js**
   - :rainbow: **npm** Native module for npm's `package.json` and `package-lock.json`
   - :rainbow: **bower** - Native module (though tracking version in `bower.json` is [deprecated](https://github.com/bower/spec/blob/master/json.md#version))
-  - :construction: **component** - native module coming soon
+  - :rainbow: **component** Native module for [`component.json`](https://github.com/componentjs/spec/blob/master/component.json/specifications.md)
 
 - **Ruby**
   - :sunny: **rubygems** - Dynamic specification, you can [use](https://stackoverflow.com/a/23135266) `VERSION` file
