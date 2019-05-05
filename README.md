@@ -111,7 +111,7 @@ This module also comes handy, when your metadata are stored in a non-static file
 - **Ruby**
   - :sunny: **rubygems** - Dynamic specification, you can [use](https://stackoverflow.com/a/23135266) `VERSION` file
 - **PHP**
-  - :construction: **composer** - native module coming soon
+  - :rainbow: **composer** - Native module for [`composer.json`](https://getcomposer.org/doc/04-schema.md)
 - **Python**
   - :sunny: **PyPI** - Dynamic specification, you can use `VERSION` file
 
