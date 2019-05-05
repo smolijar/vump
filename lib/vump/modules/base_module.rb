@@ -5,6 +5,10 @@ module Vump
       @options = options
     end
 
+    def status
+      :loaded
+    end
+
     def relevant?
       false
     end

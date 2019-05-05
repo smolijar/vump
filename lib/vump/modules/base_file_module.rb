@@ -11,7 +11,14 @@ module Vump
     end
 
     def relevant?
-      File.file?(file_path)
+      status == :relevant
+    end
+
+    def status
+      status = :loaded
+      status = :relevant if File.file?(file_path)
+      status = :ignored if @options[:git] && @options[:git].ignored?(file_path)
+      status
     end
 
     def to_stage
@@ -19,6 +26,8 @@ module Vump
     end
 
     def read
+      return nil unless File.file?(file_path)
+
       @contents = File.read(file_path)
       select(@contents)
     end

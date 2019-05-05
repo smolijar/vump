@@ -4,9 +4,10 @@ require 'logger'
 module Vump
   class Git
     def initialize(base, options = {})
-      @git = ::Git.open(base)
-      @logger = options[:logger]
+      @base = base
       @options = options
+      @logger = options[:logger]
+      @git = ::Git.open(base)
     rescue ArgumentError
       @git = nil
     end
@@ -37,6 +38,10 @@ module Vump
     def tag(version_tag)
       @git.add_tag(version_tag) unless @options[:dry]
       @logger.info("Created tag #{version_tag.yellow}") if @logger
+    end
+
+    def ignored?(path)
+      system("cd #{@base} && git check-ignore #{path}")
     end
   end
 end

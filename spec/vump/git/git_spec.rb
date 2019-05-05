@@ -3,6 +3,7 @@ require 'vump/git/git'
 require 'fileutils'
 
 sandbox_dir = File.expand_path('sandbox', __dir__)
+project_dir = File.expand_path('..', __dir__)
 readme_path = File.expand_path('README.md', sandbox_dir)
 
 RSpec.describe '' do
@@ -52,6 +53,12 @@ RSpec.describe '' do
       expect(git.tags.first.name).to eql('v42')
       # tag on HEAD
       expect(git.tags.first.sha).to eql(git.gcommit('HEAD').sha)
+    end
+    it 'ignored' do
+      vit = Vump::Git.new(project_dir)
+      expect(vit.ignored?('Gemfile.lock')).to eql(true)
+      expect(vit.ignored?('Gemfile')).to eql(false)
+      expect(vit.ignored?('idontexists and am not ignored')).to eql(false)
     end
   end
 end
