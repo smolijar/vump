@@ -24,7 +24,7 @@ module Vump
     end
 
     def report_modules(mods)
-      mods.each { |m| @modules[m.name] = {status: m.status} }
+      mods.each { |m| @modules[m.name] = { status: m.status } }
     end
 
     def add_read_version(mod, version)
@@ -34,7 +34,6 @@ module Vump
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/LineLength
-    # rubocop:disable Metrics/CyclomaticComplexity
     def help
       puts 'vump'.bold.yellow + ' [<major|minor|patch|<semver-string>>] [...options]'.yellow
       header title: 'Available options:'
@@ -97,11 +96,11 @@ module Vump
         end
         @modules.each do |name, data|
           status = data[:status]
-          next if status === data[:loaded] && @level > ::Logger::DEBUG
+          next if status == data[:loaded] && @level > ::Logger::DEBUG
 
           color = nil
-          color = 'green' if status === :relevant
-          color = 'cyan' if status === :ignored
+          color = 'green' if status == :relevant
+          color = 'cyan' if status == :ignored
           row do
             column(name)
             column(status.to_s, color: color)
@@ -114,6 +113,5 @@ module Vump
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/LineLength
-    # rubocop:enable Metrics/CyclomaticComplexity
   end
 end

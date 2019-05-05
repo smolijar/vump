@@ -44,6 +44,7 @@ module Vump
         version = mod.read
         @reporter.add_read_version(mod, version)
         next unless mod.relevant?
+
         versions << version
       end
       versions

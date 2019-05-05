@@ -11,7 +11,7 @@ module Vump
     end
 
     def relevant?
-      status === :relevant
+      status == :relevant
     end
 
     def status
@@ -27,6 +27,7 @@ module Vump
 
     def read
       return nil unless File.file?(file_path)
+
       @contents = File.read(file_path)
       select(@contents)
     end
