@@ -1,7 +1,13 @@
 require 'vump/cli/reporter'
+require 'vump/modules/base_module'
 
-class FooModule; end
-class BarModule; end
+class FooModule < Vump::BaseModule
+  def status
+    :relevant
+  end
+end
+
+class BarModule < Vump::BaseModule; end
 
 reporter = Vump::Reporter.new(verbose: true)
 
@@ -14,9 +20,8 @@ RSpec.describe Vump::Reporter do
   end
 
   context 'report_module_overview' do
-    reporter.add_loaded_modules([FooModule, BarModule])
-    reporter.add_relevant_modules([FooModule])
-    reporter.add_read_version(FooModule, '0.42.0')
+    reporter.report_modules([FooModule.new(''), BarModule.new('')])
+    reporter.add_read_version(FooModule.new(''), '0.42.0')
     it 'Contains loaded modules' do
       expect { reporter.report_module_overview }.to output(/FooModule/).to_stdout
       expect { reporter.report_module_overview }.to output(/BarModule/).to_stdout

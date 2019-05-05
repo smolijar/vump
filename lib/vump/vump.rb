@@ -20,6 +20,7 @@ module Vump
       @reporter.report_preamble(@base_path, @arg, @options)
       @options[:logger] = @logger
       @git = Git.new(@base_path, @options)
+      @options[:git] = @git
     end
 
     def all_modules
@@ -33,18 +34,20 @@ module Vump
 
     def load_modules
       version_modules = all_modules.map { |m| m.new(@base_path, @options) }
-      relevant_modules = version_modules.select(&:relevant?)
-      @reporter.add_loaded_modules(version_modules)
-      @reporter.add_relevant_modules(relevant_modules)
-      relevant_modules
+      @reporter.report_modules(version_modules)
+      version_modules
     end
 
     def read_versions(modules)
+      versions = []
       modules.map do |mod|
         version = mod.read
         @reporter.add_read_version(mod, version)
-        version
+        next unless mod.relevant?
+
+        versions << version
       end
+      versions
     end
 
     def select_version(versions)
@@ -93,6 +96,8 @@ module Vump
       modules = load_modules
       version = select_version(read_versions(modules))
       return unless version
+
+      modules = modules.select(&:relevant?)
 
       semver = compose_version(version, arg, pre, build)
       if semver.valid?
