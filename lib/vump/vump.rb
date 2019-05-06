@@ -4,6 +4,9 @@ require 'vump/modules/sheep_a_changelog'
 require 'vump/modules/version_file'
 require 'vump/modules/package_json'
 require 'vump/modules/package_lock_json'
+require 'vump/modules/composer_json'
+require 'vump/modules/component_json'
+require 'vump/modules/bower_json'
 require 'vump/git/git'
 require 'vump/semver/semver'
 
@@ -29,6 +32,9 @@ module Vump
         ::Vump::SheepAChangelog,
         ::Vump::PackageJson,
         ::Vump::PackageLockJson,
+        ::Vump::ComposerJson,
+        ::Vump::BowerJson,
+        ::Vump::ComponentJson,
       ]
     end
 
